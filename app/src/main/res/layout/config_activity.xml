@@ -24,20 +24,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="20dp" />
+        app:layout_constraintGuide_begin="16dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="395dp" />
+        app:layout_constraintGuide_begin="393dp" />
 
     <TextView
         android:id="@+id/txtConfig"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Configuration"
+        android:text="@string/configuration"
         android:textColor="#673AB7"
         android:textColorHighlight="#9C27B0"
         android:textSize="34sp"
@@ -51,21 +51,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="210dp" />
+        app:layout_constraintGuide_begin="220dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="164dp" />
+        app:layout_constraintGuide_begin="172dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="253dp" />
+        app:layout_constraintGuide_begin="268dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline15"
@@ -78,7 +78,8 @@
         android:id="@+id/txtLongeurCode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Longeur du code:"
+        android:layout_marginBottom="8dp"
+        android:text="@string/longeur_du_code"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline13"
         app:layout_constraintStart_toStartOf="@+id/guideline10" />
@@ -87,7 +88,8 @@
         android:id="@+id/txtNbCouleurs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nombre de couleurs:"
+        android:layout_marginBottom="8dp"
+        android:text="@string/nombre_de_couleurs"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline12"
         app:layout_constraintStart_toStartOf="@+id/guideline10" />
@@ -96,7 +98,8 @@
         android:id="@+id/txtNbTentatives"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nombre de tentatives:"
+        android:layout_marginBottom="8dp"
+        android:text="@string/nombre_de_tentatives"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline14"
         app:layout_constraintStart_toStartOf="@+id/guideline10" />
@@ -104,7 +107,7 @@
     <Spinner
         android:id="@+id/spin1"
         android:layout_width="129dp"
-        android:layout_height="35dp"
+        android:layout_height="48dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline13"
         app:layout_constraintEnd_toStartOf="@+id/guideline11"
         app:layout_constraintStart_toStartOf="@+id/guideline15" />
@@ -112,7 +115,7 @@
     <Spinner
         android:id="@+id/spin2"
         android:layout_width="127dp"
-        android:layout_height="36dp"
+        android:layout_height="48dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline12"
         app:layout_constraintEnd_toStartOf="@+id/guideline11"
         app:layout_constraintStart_toStartOf="@+id/guideline15" />
@@ -120,7 +123,7 @@
     <Spinner
         android:id="@+id/spin3"
         android:layout_width="128dp"
-        android:layout_height="32dp"
+        android:layout_height="48dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline14"
         app:layout_constraintEnd_toStartOf="@+id/guideline11"
         app:layout_constraintStart_toStartOf="@+id/guideline15" />
@@ -136,7 +139,7 @@
         android:id="@+id/btnSave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Enregistrer les modifications"
+        android:text="@string/enregistrer_les_modifications"
         app:layout_constraintBottom_toTopOf="@+id/guideline16"
         app:layout_constraintEnd_toStartOf="@+id/guideline11"
         app:layout_constraintStart_toStartOf="@+id/guideline10" />

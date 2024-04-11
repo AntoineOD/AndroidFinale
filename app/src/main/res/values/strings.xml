@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">FinaleAndroid</string>
+    <string name="configuration">Configuration</string>
+    <string name="enregistrer_courriel">Enregistrer Courriel</string>
+    <string name="historique_des_parties">Historique des parties</string>
+    <string name="commencer_une_partie">Commencer une partie</string>
+    <string name="courriel">Courriel</string>
+    <string name="veuillez_entrez_votre_courriel_pour_pouvoir_jouer_au_jeu">Veuillez entrer votre courriel pour pouvoir jouer au jeu:</string>
+    <string name="mastermind">MASTERMIND</string>
+    <string name="enregistrer_les_modifications">Enregistrer les modifications</string>
+    <string name="longeur_du_code">Longeur du code:</string>
+    <string name="nombre_de_couleurs">Nombre de couleurs:</string>
+    <string name="nombre_de_tentatives">Nombre de tentatives:</string>
 </resources>
