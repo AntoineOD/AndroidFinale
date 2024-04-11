@@ -42,11 +42,7 @@ public class ConfigActivity extends AppCompatActivity implements View.OnClickLis
 
             }
         });
-        ArrayList<String> listeSpin1 = new ArrayList<>();
-        for(int i = 2; i<7; i++){
-            listeSpin1.add(String.valueOf(i));
-        }
-        ArrayAdapter<String> adapter1 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, listeSpin1);
+        ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this, R.array.spinner_choice1, android.R.layout.simple_spinner_item);
         adapter1.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
         spin1.setAdapter(adapter1);
         spin2 = findViewById(R.id.spin2);
@@ -61,11 +57,7 @@ public class ConfigActivity extends AppCompatActivity implements View.OnClickLis
 
             }
         });
-        ArrayList<String> listeSpin2 = new ArrayList<>();
-        for(int i = 2; i<9; i++){
-            listeSpin2.add(String.valueOf(i));
-        }
-        ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, listeSpin2);
+        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.spinner_choice2, android.R.layout.simple_spinner_item);
         adapter2.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
         spin2.setAdapter(adapter2);
         spin3 = findViewById(R.id.spin3);
@@ -80,11 +72,7 @@ public class ConfigActivity extends AppCompatActivity implements View.OnClickLis
 
             }
         });
-        ArrayList<String> listeSpin3 = new ArrayList<>();
-        for(int i = 8; i<13; i++){
-            listeSpin3.add(String.valueOf(i));
-        }
-        ArrayAdapter<String> adapter3 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, listeSpin3);
+        ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(this, R.array.spinner_choice3, android.R.layout.simple_spinner_item);
         adapter3.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
         spin3.setAdapter(adapter3);
 
@@ -96,6 +84,8 @@ public class ConfigActivity extends AppCompatActivity implements View.OnClickLis
     }
     @Override
     public void onClick(View v) {
-
+        if(v == btnSave){
+            finish();
+        }
     }
 }
