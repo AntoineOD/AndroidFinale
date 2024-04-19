@@ -1,6 +1,7 @@
 package com.example.finaleandroid.dao;
 
 import com.example.finaleandroid.modele.entite.Code;
+import com.example.finaleandroid.modele.entite.Couleur;
 import com.example.finaleandroid.modele.entite.Stat;
 
 import org.json.JSONException;
@@ -14,6 +15,9 @@ public class DAO {
     }
     public static List<Stat> getStats() throws IOException, JSONException {
         return new HttpJsonService().getStats();
+    }
+    public static List<Couleur> getCouleurs() throws IOException, JSONException {
+        return new HttpJsonService().getCouleurs();
     }
 
 }

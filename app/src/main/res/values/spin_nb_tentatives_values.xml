@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <integer-array name="spinner_choice3">
+    <integer-array name="spinner_nb_tentatives">
         <item>8</item>
         <item>9</item>
         <item>10</item>

@@ -3,6 +3,7 @@ import android.util.Log;
 
 
 import com.example.finaleandroid.modele.entite.Code;
+import com.example.finaleandroid.modele.entite.Couleur;
 import com.example.finaleandroid.modele.entite.Stat;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -66,5 +67,9 @@ public class HttpJsonService {
             }
         }
         return true;
+    }
+
+    public List<Couleur> getCouleurs() {
+        return null;
     }
 }

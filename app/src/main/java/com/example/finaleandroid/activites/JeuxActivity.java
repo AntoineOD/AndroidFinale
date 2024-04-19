@@ -1,5 +1,6 @@
 package com.example.finaleandroid.activites;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
@@ -21,9 +22,12 @@ public class JeuxActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_jeux);
 
+
+
         androidx.gridlayout.widget.GridLayout gridLayoutTentatives = findViewById(R.id.gridLayoutTentatives);
-        row=10;
-        column=4;
+        Intent intention =this.getIntent();
+        row=intention.getIntExtra("NB_TENTATIVES",10);
+        column= intention.getIntExtra ("LONGUEUR_CODE",4);
         gridLayoutTentatives.setRowCount(row);
         gridLayoutTentatives.setColumnCount(column);
         for(int i = 0; i < row * column; i++) {

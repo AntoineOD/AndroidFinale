@@ -22,6 +22,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button btnHistorique;
     Button btnEmail;
     Boolean emailVerfi;
+    final int REQUEST_CODE = 1;
+    private int longueurCode;
+    private int nbCouleurs;
+    private  int nbTentatives;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,11 +52,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         if(v.getId() == R.id.btnPlay){
             Intent intention = new Intent(this, JeuxActivity.class);
+            intention.putExtra("LONGUEUR_CODE", longueurCode);
+            intention.putExtra("NB_COULEURS", nbCouleurs);
+            intention.putExtra("NB_TENTATIVES", nbTentatives);
             startActivity(intention);
         }
         else if(v.getId() == R.id.btnConfig){
             Intent intention = new Intent(this, ConfigActivity.class);
-            startActivity(intention);
+            startActivityForResult(intention,REQUEST_CODE);
         }
         else if(v.getId() == R.id.btnHistorique){
 
@@ -68,5 +75,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             //else
             //Message comme quoi mail est invalide
         }
+    }
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case REQUEST_CODE:
+                if (resultCode == RESULT_OK) {
+                     longueurCode = data.getIntExtra("LONGUEUR_CODE",2);
+                     nbCouleurs = data.getIntExtra("NB_COULEURS",6);
+                     nbTentatives = data.getIntExtra("NB_TENTATIVES",2);
+                }
+                break;
+        }
+
+
     }
 }

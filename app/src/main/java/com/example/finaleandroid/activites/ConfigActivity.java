@@ -1,5 +1,6 @@
 package com.example.finaleandroid.activites;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -48,14 +49,14 @@ public class ConfigActivity extends AppCompatActivity implements View.OnClickLis
 
             }
         });
-        ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this, R.array.spinner_choice1, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this, R.array.spinner_longueur_code, android.R.layout.simple_spinner_item);
         adapter1.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
         spin1.setAdapter(adapter1);
         spin2 = findViewById(R.id.spin2);
         spin2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                 nbCouleurs = Integer.parseInt(parent.getItemAtPosition(position).toString())  ;
+                 nbCouleurs =  (int) parent.getItemAtPosition(position)  ;
             }
 
             @Override
@@ -63,14 +64,14 @@ public class ConfigActivity extends AppCompatActivity implements View.OnClickLis
 
             }
         });
-        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.spinner_choice2, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.spinner_nb_couleurs, android.R.layout.simple_spinner_item);
         adapter2.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
         spin2.setAdapter(adapter2);
         spin3 = findViewById(R.id.spin3);
         spin3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String item = parent.getItemAtPosition(position).toString();
+                nbTentatives = (int) parent.getItemAtPosition(position);
             }
 
             @Override
@@ -78,7 +79,7 @@ public class ConfigActivity extends AppCompatActivity implements View.OnClickLis
 
             }
         });
-        ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(this, R.array.spinner_choice3, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(this, R.array.spinner_nb_tentatives, android.R.layout.simple_spinner_item);
         adapter3.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
         spin3.setAdapter(adapter3);
 
@@ -91,7 +92,11 @@ public class ConfigActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View v) {
         if(v == btnSave){
-
+            Intent data = new Intent();
+            data.putExtra("LONGUEUR_CODE",longeurCode);
+            data.putExtra("NB_COULEURS", nbCouleurs);
+            data.putExtra("NB_TENTATIVES", nbTentatives);
+            setResult(RESULT_OK,data);
             finish();
         }
     }
