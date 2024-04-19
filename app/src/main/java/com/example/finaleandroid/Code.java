@@ -1,26 +1,50 @@
 package com.example.finaleandroid;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.List;
+
 public class Code {
-    private String[] code;
+    private String id;
+    private List<String> code;
+    private int nbCouleurs;
 
-    public Code(int longueur) {
-        this.code = new String[longueur];
+    // Constructor
+    public Code() {
+        // Default constructor
     }
 
-    public void setElement(int index, String element) {
-        this.code[index] = element;
+    public Code(String id, List<String> code, int nbCouleurs) {
+        this.id = id;
+        this.code = code;
+        this.nbCouleurs = nbCouleurs;
     }
 
-    public String getElement(int index) {
-        return this.code[index];
+    // Getters and Setters
+    public String getId() {
+        return id;
     }
 
-    public String[] getCode() {
-        return this.code;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public void genererCodeAleatoire(int nbCouleurs) {
+    public List<String> getCode() {
+        return code;
+    }
 
+    public void setCode(List<String> code) {
+        this.code = code;
+    }
+
+    public int getNumberOfColors() {
+        return nbCouleurs;
+    }
+
+    public void setNumberOfColors(int numberOfColors) {
+        this.nbCouleurs = numberOfColors;
     }
 
 }
+
+
