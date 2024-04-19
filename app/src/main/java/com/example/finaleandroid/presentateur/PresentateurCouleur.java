@@ -2,39 +2,41 @@ package com.example.finaleandroid.presentateur;
 
 import android.app.Activity;
 
+import com.example.finaleandroid.activites.JeuxActivity;
 import com.example.finaleandroid.activites.MainActivity;
 import com.example.finaleandroid.dao.DAO;
 import com.example.finaleandroid.modele.Modele;
 import com.example.finaleandroid.modele.ModeleManager;
 import com.example.finaleandroid.modele.entite.Code;
 import com.example.finaleandroid.modele.entite.Couleur;
-import com.example.finaleandroid.modele.entite.Stat;
 
 import org.json.JSONException;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class PresentateurCouleur {
 
-        private Activity activite;
-        private Modele modele;
+    private Activity activite;
+    private Modele modele;
 
-        public PresentateurCouleur(Activity activite) {
-            this.activite = activite;
-            this.modele = ModeleManager.getInstance();
-        }
+    public PresentateurCouleur(Activity activite) {
+        this.activite = activite;
+        this.modele = ModeleManager.getInstance();
+    }
 
-        public List<Couleur > getCouleurs(String id) {
-            return modele.getCouleurs();
-        }
-        public Couleur getCouleur(String id) {
-            return modele.getCouleur(id);
-        }
-        public void ObtenirCouleur(){
+    public List<Couleur> getCouleurs() {
+        return modele.getCouleurs();
+    }
 
-        }
-    public void obtenirCouleurs(){
+
+    public Couleur getCouleur(String id) {
+        return modele.getCouleur(id);
+    }
+
+
+    public void ObtenirCouleurs(){
         new Thread() {
             @Override
             public void run() {
@@ -45,32 +47,38 @@ public class PresentateurCouleur {
                     //Injecter la liste dans le modèle :
                     modele.setCouleurs(liste);
                     //Demander à la vue (activité) de rafraichir le ListView :
-                    ((MainActivity)activite).runOnUiThread(new Runnable() {
+                    ((JeuxActivity)activite).runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            ((MainActivity)activite).raffraichirListe();
+                            ((JeuxActivity)activite).afficherMessage("Couleurs obtenus avec succès");
                         }
                     });
                 } catch (JSONException e) {
-                    ((MainActivity)activite).runOnUiThread(new Runnable() {
+                    ((JeuxActivity)activite).runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            ((MainActivity)activite).afficherMessage("Problème dans le JSON des comptes");
+                            ((JeuxActivity)activite).afficherMessage("Problème dans le JSON des comptes");
                         }
                     });
                 } catch (IOException e) {
-                    ((MainActivity)activite).runOnUiThread(new Runnable() {
+                    ((JeuxActivity)activite).runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            ((MainActivity)activite).afficherMessage("Problème d'accès à l'API");
+                            ((JeuxActivity)activite).afficherMessage("Problème d'accès à l'API");
                         }
                     });
                 }
             }
         }.start();
     }
-}
 
+    public List<Couleur> getCouleursCorespondantes(int nbCouleurs) {
 
-
+        List<Couleur> couleurs = modele.getCouleurs();
+        List<Couleur> couleursCorespondantes = new ArrayList<>();
+        for (int i = 0; i < nbCouleurs; i++) {
+            couleursCorespondantes.add(couleurs.get(i));
+        }
+        return couleursCorespondantes;
+    }
 }

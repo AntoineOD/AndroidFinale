@@ -81,7 +81,7 @@
         app:layout_constraintVertical_bias="0.627" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/buttonMenuPrincipal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Menu principale"
@@ -103,7 +103,7 @@
         app:layout_constraintVertical_bias="0.482" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/buttonNouvellePartie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Nouvelle partie"

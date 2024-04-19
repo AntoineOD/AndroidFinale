@@ -6,12 +6,23 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.finaleandroid.R;
 import com.example.finaleandroid.activites.ConfigActivity;
 import com.example.finaleandroid.activites.JeuxActivity;
+import com.example.finaleandroid.modele.entite.Code;
+import com.example.finaleandroid.modele.entite.Couleur;
+import com.example.finaleandroid.modele.entite.Stat;
+import com.example.finaleandroid.presentateur.PrensentateurCode;
+import com.example.finaleandroid.presentateur.PresentateurCouleur;
+import com.example.finaleandroid.presentateur.PresentateurStat;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     TextView txtTitre;
@@ -46,6 +57,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnStart.setOnClickListener(this);
         btnConfig.setOnClickListener(this);
         btnHistorique.setOnClickListener(this);
+
+
+
     }
 
     @Override
@@ -91,3 +105,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 }
+
+
+

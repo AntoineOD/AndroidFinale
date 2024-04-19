@@ -2,6 +2,7 @@ package com.example.finaleandroid.presentateur;
 
 import android.app.Activity;
 
+import com.example.finaleandroid.activites.JeuxActivity;
 import com.example.finaleandroid.activites.MainActivity;
 import com.example.finaleandroid.dao.DAO;
 import com.example.finaleandroid.modele.Modele;
@@ -23,11 +24,12 @@ public class PresentateurStat {
         this.modele = ModeleManager.getInstance();
     }
 
-    public Code getCode(String id) {
-        return modele.getCode(id);
-    }
+
     public Stat getStat(String id) {
         return modele.getStat(id);
+    }
+    public List<Stat> getStats() {
+        return modele.getStats();
     }
     public void ObtenirStat(){
 
@@ -43,32 +45,45 @@ public class PresentateurStat {
                     //Injecter la liste dans le modèle :
                     modele.setStats(liste);
                     //Demander à la vue (activité) de rafraichir le ListView :
-                    ((MainActivity)activite).runOnUiThread(new Runnable() {
+                    ((JeuxActivity)activite).runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            ((MainActivity)activite).raffraichirListe();
+                            ((JeuxActivity)activite).afficherMessage("Statistique obtenus avec succès");
                         }
                     });
                 } catch (JSONException e) {
-                    ((MainActivity)activite).runOnUiThread(new Runnable() {
+                    ((JeuxActivity)activite).runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            ((MainActivity)activite).afficherMessage("Problème dans le JSON des comptes");
+                            ((JeuxActivity)activite).afficherMessage("Problème dans le JSON des comptes");
                         }
                     });
                 } catch (IOException e) {
-                    ((MainActivity)activite).runOnUiThread(new Runnable() {
+                    ((JeuxActivity)activite).runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            ((MainActivity)activite).afficherMessage("Problème d'accès à l'API");
+                            ((JeuxActivity)activite).afficherMessage("Problème d'accès à l'API");
                         }
                     });
                 }
             }
         }.start();
     }
-}
+
+    public Stat obtenirStatistiqueCorrespondante(String idCodeSecret) {
+
+            Stat statCorespondante = null;
+            for(Stat stat: modele.getStats()){
+                if(stat.getIdCode().equals(idCodeSecret) ){
+                    statCorespondante= stat;
+                }
+            }
+            return  statCorespondante;
+        }
+    }
 
 
 
-}
+
+
+

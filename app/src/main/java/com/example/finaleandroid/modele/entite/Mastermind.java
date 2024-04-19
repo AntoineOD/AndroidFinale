@@ -1,5 +1,7 @@
 package com.example.finaleandroid.modele.entite;
 
+import java.util.List;
+
 public class Mastermind {
 
     private Code code;
@@ -11,40 +13,39 @@ public class Mastermind {
     private boolean partieGagnee;
     private boolean partiePerdue;
     private boolean partieEnCours;
-    private Code[] tentatives;
-    private Feedback[] feedbacks;
+    private List<Code> listTentatives;
+    private List<Feedback> listFeedbacks;
 
     public Mastermind(int nbTentatives, int nbCouleurs, int longueurCode) {
         this.nbTentatives = nbTentatives;
         this.nbCouleurs = nbCouleurs;
         this.longueurCode = longueurCode;
-        this.code = new Code(longueurCode);
-        this.code.genererCodeAleatoire(nbCouleurs);
+
         this.nbCouleursCorrectesEtBienPlacees = 0;
         this.nbCouleursCorrectesEtMalPlacees = 0;
         this.partieGagnee = false;
         this.partiePerdue = false;
         this.partieEnCours = true;
-        this.tentatives = new Code[nbTentatives];
-        this.feedbacks = new Feedback[nbTentatives];
+      //  this.tentatives = new Code[nbTentatives];
+        //this.feedbacks = new Feedback[nbTentatives];
     }
 
-    public void jouer(Code tentative) {
-        if (this.partieEnCours) {
-            Feedback feedback = new Feedback(this.code, tentative);
-            this.feedbacks[this.nbCouleursCorrectesEtBienPlacees + this.nbCouleursCorrectesEtMalPlacees] = feedback;
-            this.tentatives[this.nbCouleursCorrectesEtBienPlacees + this.nbCouleursCorrectesEtMalPlacees] = tentative;
-            this.nbCouleursCorrectesEtBienPlacees = feedback.getCouleurCorrecteEtPositionCorrecte();
-            this.nbCouleursCorrectesEtMalPlacees = feedback.getCouleurCorrecteEtPositionIncorrecte();
-            if (this.nbCouleursCorrectesEtBienPlacees == this.longueurCode) {
-                this.partieGagnee = true;
-                this.partieEnCours = false;
-            } else if (this.nbCouleursCorrectesEtBienPlacees + this.nbCouleursCorrectesEtMalPlacees == this.nbTentatives) {
-                this.partiePerdue = true;
-                this.partieEnCours = false;
-            }
-        }
-    }
+//    public void jouer(Code tentative) {
+//        if (this.partieEnCours) {
+//            Feedback feedback = new Feedback(this.code, tentative);
+//            this.feedbacks[this.nbCouleursCorrectesEtBienPlacees + this.nbCouleursCorrectesEtMalPlacees] = feedback;
+//            this.tentatives[this.nbCouleursCorrectesEtBienPlacees + this.nbCouleursCorrectesEtMalPlacees] = tentative;
+//            this.nbCouleursCorrectesEtBienPlacees = feedback.getCouleurCorrecteEtPositionCorrecte();
+//            this.nbCouleursCorrectesEtMalPlacees = feedback.getCouleurCorrecteEtPositionIncorrecte();
+//            if (this.nbCouleursCorrectesEtBienPlacees == this.longueurCode) {
+//                this.partieGagnee = true;
+//                this.partieEnCours = false;
+//            } else if (this.nbCouleursCorrectesEtBienPlacees + this.nbCouleursCorrectesEtMalPlacees == this.nbTentatives) {
+//                this.partiePerdue = true;
+//                this.partieEnCours = false;
+//            }
+//        }
+//    }
 
     public Code getCode() {
         return this.code;
@@ -82,12 +83,20 @@ public class Mastermind {
         return this.partieEnCours;
     }
 
-    public Code[] getTentatives() {
-        return this.tentatives;
+    public List<Code> getTentatives() {
+        return this.listTentatives;
     }
 
-    public Feedback[] getFeedbacks() {
-        return this.feedbacks;
+    public List<Feedback> getFeedbacks() {
+        return this.listFeedbacks;
+    }
+
+    public void addFeedback(Feedback feedback) {
+       this.listFeedbacks.add(feedback);
+    }
+
+    public void addTentative(Code tentative) {
+        this.listTentatives.add(tentative);
     }
 
 
