@@ -1,4 +1,4 @@
-package com.example.finaleandroid;
+package com.example.finaleandroid.modele.entite;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

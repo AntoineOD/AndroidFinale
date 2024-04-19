@@ -1,4 +1,4 @@
-package com.example.finaleandroid;
+package com.example.finaleandroid.activites;
 
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +9,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.finaleandroid.R;
 
 import java.util.ArrayList;
 
@@ -21,6 +23,10 @@ public class ConfigActivity extends AppCompatActivity implements View.OnClickLis
     Spinner spin2;
     Spinner spin3;
     Button btnSave;
+    private int longeurCode;
+    private int nbCouleurs;
+
+    private int nbTentatives;
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.config_activity);
@@ -35,7 +41,7 @@ public class ConfigActivity extends AppCompatActivity implements View.OnClickLis
         spin1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String item = parent.getItemAtPosition(position).toString();
+                 longeurCode = (int) parent.getItemAtPosition(position);
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
@@ -49,7 +55,7 @@ public class ConfigActivity extends AppCompatActivity implements View.OnClickLis
         spin2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String item = parent.getItemAtPosition(position).toString();
+                 nbCouleurs = Integer.parseInt(parent.getItemAtPosition(position).toString())  ;
             }
 
             @Override
@@ -85,6 +91,7 @@ public class ConfigActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View v) {
         if(v == btnSave){
+
             finish();
         }
     }

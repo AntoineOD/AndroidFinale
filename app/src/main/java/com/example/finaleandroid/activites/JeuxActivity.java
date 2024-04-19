@@ -1,4 +1,4 @@
-package com.example.finaleandroid;
+package com.example.finaleandroid.activites;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -9,6 +9,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.finaleandroid.R;
 
 public class JeuxActivity extends AppCompatActivity implements View.OnClickListener{
     int row;

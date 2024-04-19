@@ -1,4 +1,4 @@
-package com.example.finaleandroid;
+package com.example.finaleandroid.activites;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +8,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.finaleandroid.R;
+import com.example.finaleandroid.activites.ConfigActivity;
+import com.example.finaleandroid.activites.JeuxActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     TextView txtTitre;

@@ -13,7 +13,7 @@
         android:theme="@style/Theme.FinaleAndroid"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".activites.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,8 +21,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:label="FinaleAndroid" android:name=".ConfigActivity"/>
-        <activity android:label="FinaleAndroid" android:name=".JeuxActivity"/>
+        <activity android:label="FinaleAndroid" android:name=".activites.ConfigActivity"/>
+        <activity android:label="FinaleAndroid" android:name=".activites.JeuxActivity"/>
     </application>
 
 </manifest>

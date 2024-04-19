@@ -4,6 +4,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import com.example.finaleandroid.modele.entite.Partie;
+
 import java.util.ArrayList;
 public class GestionnaireBD extends SQLiteOpenHelper{
     public GestionnaireBD(Context context){

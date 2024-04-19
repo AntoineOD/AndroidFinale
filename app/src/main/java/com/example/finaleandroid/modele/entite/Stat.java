@@ -1,4 +1,4 @@
-package com.example.finaleandroid;
+package com.example.finaleandroid.modele.entite;
 
 public class Stat {
     private String id;
