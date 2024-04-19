@@ -44,16 +44,16 @@
         android:id="@+id/inputCouriel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:autofillHints=""
         android:ems="10"
+        android:hint="@string/courriel"
         android:inputType="text"
         android:minHeight="48dp"
-        android:text="@string/courriel"
         app:layout_constraintBottom_toTopOf="@+id/guideline4"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        tools:ignore="LabelFor"
-        android:autofillHints="" />
+        tools:ignore="LabelFor" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline4"

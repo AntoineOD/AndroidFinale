@@ -64,21 +64,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        if(v.getId() == R.id.btnPlay){
+        if(v == btnStart){
             Intent intention = new Intent(this, JeuxActivity.class);
             intention.putExtra("LONGUEUR_CODE", longueurCode);
             intention.putExtra("NB_COULEURS", nbCouleurs);
             intention.putExtra("NB_TENTATIVES", nbTentatives);
             startActivity(intention);
         }
-        else if(v.getId() == R.id.btnConfig){
+        else if(v == btnConfig){
             Intent intention = new Intent(this, ConfigActivity.class);
             startActivityForResult(intention,REQUEST_CODE);
         }
-        else if(v.getId() == R.id.btnHistorique){
+        else if(v == btnHistorique){
 
         }
-        else if(v.getId() == R.id.btnEmail){
+        else if(v == btnEmail){
             String email = String.valueOf(inpEmail.getText());
             //VerifEmail(email); On check si le email est un email valide
             //if(verifEmail() == true)
