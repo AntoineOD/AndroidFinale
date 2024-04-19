@@ -31,7 +31,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="526dp" />
+        app:layout_constraintGuide_end="205dp" />
 
     <LinearLayout
         android:id="@+id/layoutReponses"
@@ -46,7 +46,7 @@
     <androidx.gridlayout.widget.GridLayout
         android:id="@+id/layoutPalette"
         android:layout_width="107dp"
-        android:layout_height="278dp"
+        android:layout_height="205dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline17"

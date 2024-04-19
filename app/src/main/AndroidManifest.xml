@@ -22,6 +22,7 @@
             </intent-filter>
         </activity>
         <activity android:label="FinaleAndroid" android:name=".ConfigActivity"/>
+        <activity android:label="FinaleAndroid" android:name=".JeuxActivity"/>
     </application>
 
 </manifest>

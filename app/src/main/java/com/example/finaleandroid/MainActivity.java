@@ -43,10 +43,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         if(v.getId() == R.id.btnPlay){
-
+            Intent intention = new Intent(this, JeuxActivity.class);
+            startActivity(intention);
         }
         else if(v.getId() == R.id.btnConfig){
-            System.out.println("Oui");
             Intent intention = new Intent(this, ConfigActivity.class);
             startActivity(intention);
         }
