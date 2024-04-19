@@ -2,7 +2,7 @@ package com.example.finaleandroid;
 
 public class Partie {
 
-    private String id_Partie;
+    private int id_Partie;
     private String id_Code_Secret;
     private String courriel_Joueur;
     private String code_Secret;
@@ -14,7 +14,7 @@ public class Partie {
         // Default constructor
     }
 
-    public Partie(String id_Partie, String id_Code_Secret, String courriel_Joueur, String code_Secret, int nb_Couleurs, String resultat, int nb_Tentatives) {
+    public Partie(int id_Partie, String id_Code_Secret, String courriel_Joueur, String code_Secret, int nb_Couleurs, String resultat, int nb_Tentatives) {
         this.id_Partie = id_Partie;
         this.id_Code_Secret = id_Code_Secret;
         this.courriel_Joueur = courriel_Joueur;
@@ -24,11 +24,11 @@ public class Partie {
         this.nb_Tentatives = nb_Tentatives;
     }
 
-    public String getIdPartie() {
+    public int getIdPartie() {
         return id_Partie;
     }
 
-    public void setIdPartie(String id_Partie) {
+    public void setIdPartie(int id_Partie) {
         this.id_Partie = id_Partie;
     }
 
