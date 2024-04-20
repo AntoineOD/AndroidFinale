@@ -22,6 +22,7 @@ public class PrensentateurCode {
     private Activity activite;
     private Modele modele;
 
+
     public PrensentateurCode(Activity activite) {
         this.activite = activite;
         this.modele = ModeleManager.getInstance();
@@ -35,6 +36,7 @@ public class PrensentateurCode {
     public Code getCode(String id) {
         return modele.getCode(id);
     }
+
 
 
 public void ObtenirCode(){
