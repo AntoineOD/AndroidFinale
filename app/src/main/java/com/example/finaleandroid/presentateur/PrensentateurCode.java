@@ -71,7 +71,7 @@ public void ObtenirCode(){
     public Code obtenirCodeSecret(int longueurCode, int nbCouleurs) {
         List<Code> codesCorespondant = new ArrayList();
         for( Code code:modele.getCodes()){
-            if(code.getCode().size() == longueurCode && code.getNumberOfColors() == nbCouleurs){
+            if(code.getCode().size() == longueurCode && code.getNbCouleurs() == nbCouleurs){
                 codesCorespondant.add(code);
             }
         }

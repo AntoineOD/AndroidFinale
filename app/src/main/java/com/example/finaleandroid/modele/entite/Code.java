@@ -7,7 +7,7 @@ import java.util.List;
 public class Code {
     private String id;
     private List<String> code;
-    private int numberOfColors;
+    private int nbCouleurs; // This matches the JSON property name
 
     // Constructor
     public Code() {
@@ -17,7 +17,7 @@ public class Code {
     public Code(String id, List<String> code, int nbCouleurs) {
         this.id = id;
         this.code = code;
-        this.numberOfColors = nbCouleurs;
+        this.nbCouleurs = nbCouleurs;
     }
 
     // Getters and Setters
@@ -37,14 +37,13 @@ public class Code {
         this.code = code;
     }
 
-    public int getNumberOfColors() {
-        return numberOfColors;
+    public int getNbCouleurs() {
+        return nbCouleurs;
     }
 
-    public void setNumberOfColors(int numberOfColors) {
-        this.numberOfColors = numberOfColors;
+    public void setNbCouleurs(int nbCouleurs) {
+        this.nbCouleurs = nbCouleurs;
     }
-
 }
 
 
