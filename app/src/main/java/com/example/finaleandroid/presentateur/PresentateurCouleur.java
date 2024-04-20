@@ -43,13 +43,10 @@ public class PresentateurCouleur {
             public void run() {
 
                 try {
-                    //Demander au DAO de récupérer la liste des comptes bancaires :
                     modele = ModeleManager.getInstance();
                     List<Couleur> liste = null;
                     liste = DAO.getCouleurs();
-                    //Injecter la liste dans le modèle :
                     modele.setCouleurs(liste);
-                    //Demander à la vue (activité) de rafraichir le ListView :
                 } catch (JSONException e) {
 
                 } catch (IOException e) {

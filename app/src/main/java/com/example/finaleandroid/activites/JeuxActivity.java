@@ -81,7 +81,6 @@ public class JeuxActivity extends AppCompatActivity implements View.OnClickListe
         statistique = prensentateurStat.obtenirStatistiqueCorrespondante(codeSecret.getId());
 
         presentateurCouleur = new PresentateurCouleur(this);
-        presentateurCouleur.ObtenirCouleurs();
         presentateurCouleur.getCouleurs();
         listCouleur = presentateurCouleur.getCouleursCorespondantes(nbCouleurs);
 

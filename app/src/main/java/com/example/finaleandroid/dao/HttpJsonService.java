@@ -69,7 +69,20 @@ public class HttpJsonService {
         return true;
     }
 
-    public List<Couleur> getCouleurs() {
-        return null;
+    public List<Couleur> getCouleurs() throws IOException {
+        OkHttpClient okHttpClient = new OkHttpClient();
+        Request request = new Request.Builder()
+                .url(URL_POINT_ENTREE + "/couleursDisponibles")
+                .build();
+        Response response = okHttpClient.newCall(request).execute();
+        String responseBody = response.body().string();
+        if (isValidJSON(responseBody)) {
+            ObjectMapper objectMapper = new ObjectMapper();
+            List<Couleur> listeCouleur = Arrays.asList(objectMapper.readValue(responseBody, Couleur[].class));
+            return listeCouleur;
+        } else {
+            Log.e("HttpJsonService:getStats()", "Invalid JSON response");
+            return null;
+        }
     }
 }
