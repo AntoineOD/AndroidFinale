@@ -67,15 +67,14 @@ public class JeuxActivity extends AppCompatActivity implements View.OnClickListe
 
         Mastermind mastermind = new Mastermind(longueurCode, nbCouleurs, nbTentatives);
 
-        prensentateurCode = new PrensentateurCode(this);
-        prensentateurCode.ObtenirCode();
+        prensentateurCode=new PrensentateurCode(this);
         listCodes = prensentateurCode.getCodes();
         codeSecret = prensentateurCode.obtenirCodeSecret(longueurCode, nbCouleurs);
 
-        prensentateurStat = new PresentateurStat(this);
-        prensentateurStat.ObtenirStatistiques();
-        listStats = prensentateurStat.getStats();
-        statistique = prensentateurStat.obtenirStatistiqueCorrespondante(codeSecret.getId());
+//        prensentateurStat = new PresentateurStat(this);
+//        prensentateurStat.ObtenirStatistiques();
+//        listStats = prensentateurStat.getStats();
+//        statistique = prensentateurStat.obtenirStatistiqueCorrespondante(codeSecret.getId());
 
         presentateurCouleur = new PresentateurCouleur(this);
         presentateurCouleur.ObtenirCouleurs();

@@ -44,21 +44,23 @@ public void ObtenirCode(){
         @Override
         public void run() {
             try {
-                List<Code> liste = DAO.getCodes();
+                modele = ModeleManager.getInstance();
+                List<Code> liste = null;
+                liste =DAO.getCodes();
                 modele.setCodes(liste);
-                ((JeuxActivity) activite).runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        ((JeuxActivity) activite).afficherMessage("Code obtenus avec succès");
-                    }
-                });
-            } catch (JSONException e) {
-                ((JeuxActivity) activite).runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        ((JeuxActivity) activite).afficherMessage("Problème dans le JSON des codes");
-                    }
-                });
+//                ((JeuxActivity) activite).runOnUiThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        ((JeuxActivity) activite).afficherMessage("Code obtenus avec succès");
+//                    }
+//                });
+//            } catch (JSONException e) {
+//                ((JeuxActivity) activite).runOnUiThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        ((JeuxActivity) activite).afficherMessage("Problème dans le JSON des codes");
+//                    }
+//                });
             } catch (IOException e) {
                 ((JeuxActivity) activite).runOnUiThread(new Runnable() {
                     @Override

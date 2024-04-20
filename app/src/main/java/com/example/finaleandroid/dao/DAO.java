@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class DAO {
-    public static List<Code> getCodes() throws IOException, JSONException {
+    public static List<Code> getCodes() throws IOException {
         return new HttpJsonService().getCodes();
     }
     public static List<Stat> getStats() throws IOException, JSONException {

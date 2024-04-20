@@ -22,7 +22,7 @@ import okhttp3.Response;
 public class HttpJsonService {
     private static String URL_POINT_ENTREE = "http://10.0.2.2:3000";
 
-    public List<Code> getCodes() throws IOException, JSONException {
+    public List<Code> getCodes() throws IOException {
         OkHttpClient okHttpClient = new OkHttpClient();
         Request request = new Request.Builder()
                 .url(URL_POINT_ENTREE + "/codesSecrets")
