@@ -4,13 +4,13 @@ import java.util.List;
 
 public class Couleur {
 
-    List<String> couleur;
+    List<String> liste;
 
     public List<String> getCouleur() {
-        return couleur;
+        return liste;
     }
 
     public void setCouleur(List<String> couleur) {
-        this.couleur = couleur;
+        this.liste = couleur;
     }
 }

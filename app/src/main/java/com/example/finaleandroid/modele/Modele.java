@@ -49,7 +49,7 @@ public class Modele {
                 return couleur;
         return null;
     }
-    public void setCouleurs(List<String> couleurList) {
-      couleur.setCouleur(couleurList);
+    public void setCouleurs(Couleur couleurList) {
+      couleur=couleurList;
     }
 }

@@ -43,7 +43,7 @@ public class PresentateurCouleur {
             public void run() {
                 try {
                     modele = ModeleManager.getInstance();
-                    List<String> liste = null;
+                    Couleur liste = null;
                     liste = DAO.getCouleurs();
                     modele.setCouleurs(liste);
                 } catch (JSONException e) {
