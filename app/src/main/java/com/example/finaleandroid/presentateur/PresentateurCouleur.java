@@ -9,6 +9,7 @@ import com.example.finaleandroid.modele.Modele;
 import com.example.finaleandroid.modele.ModeleManager;
 import com.example.finaleandroid.modele.entite.Code;
 import com.example.finaleandroid.modele.entite.Couleur;
+import com.example.finaleandroid.modele.entite.Stat;
 
 import org.json.JSONException;
 
@@ -43,30 +44,16 @@ public class PresentateurCouleur {
 
                 try {
                     //Demander au DAO de récupérer la liste des comptes bancaires :
-                    List<Couleur> liste = DAO.getCouleurs();
+                    modele = ModeleManager.getInstance();
+                    List<Couleur> liste = null;
+                    liste = DAO.getCouleurs();
                     //Injecter la liste dans le modèle :
                     modele.setCouleurs(liste);
                     //Demander à la vue (activité) de rafraichir le ListView :
-                    ((JeuxActivity)activite).runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            ((JeuxActivity)activite).afficherMessage("Couleurs obtenus avec succès");
-                        }
-                    });
                 } catch (JSONException e) {
-                    ((JeuxActivity)activite).runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            ((JeuxActivity)activite).afficherMessage("Problème dans le JSON des comptes");
-                        }
-                    });
+
                 } catch (IOException e) {
-                    ((JeuxActivity)activite).runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            ((JeuxActivity)activite).afficherMessage("Problème d'accès à l'API");
-                        }
-                    });
+
                 }
             }
         }.start();

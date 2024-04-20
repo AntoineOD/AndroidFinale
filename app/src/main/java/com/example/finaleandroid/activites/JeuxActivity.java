@@ -13,6 +13,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.finaleandroid.R;
+import com.example.finaleandroid.dao.DAO;
 import com.example.finaleandroid.modele.entite.Code;
 import com.example.finaleandroid.modele.entite.Couleur;
 import com.example.finaleandroid.modele.entite.Mastermind;
@@ -21,6 +22,9 @@ import com.example.finaleandroid.presentateur.PrensentateurCode;
 import com.example.finaleandroid.presentateur.PresentateurCouleur;
 import com.example.finaleandroid.presentateur.PresentateurStat;
 
+import org.json.JSONException;
+
+import java.io.IOException;
 import java.util.List;
 
 public class JeuxActivity extends AppCompatActivity implements View.OnClickListener {
@@ -67,8 +71,7 @@ public class JeuxActivity extends AppCompatActivity implements View.OnClickListe
 
         Mastermind mastermind = new Mastermind(longueurCode, nbCouleurs, nbTentatives);
 
-        prensentateurCode = new PrensentateurCode(this);
-        prensentateurCode.ObtenirCode();
+        prensentateurCode=new PrensentateurCode(this);
         listCodes = prensentateurCode.getCodes();
         codeSecret = prensentateurCode.obtenirCodeSecret(longueurCode, nbCouleurs);
 

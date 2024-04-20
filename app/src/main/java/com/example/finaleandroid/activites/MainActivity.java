@@ -13,6 +13,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.finaleandroid.R;
 import com.example.finaleandroid.activites.ConfigActivity;
 import com.example.finaleandroid.activites.JeuxActivity;
+import com.example.finaleandroid.modele.Modele;
+import com.example.finaleandroid.modele.ModeleManager;
 import com.example.finaleandroid.modele.entite.Code;
 import com.example.finaleandroid.modele.entite.Couleur;
 import com.example.finaleandroid.modele.entite.Stat;
@@ -57,6 +59,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnStart.setOnClickListener(this);
         btnConfig.setOnClickListener(this);
         btnHistorique.setOnClickListener(this);
+
+        PrensentateurCode prensentateurCode = new PrensentateurCode(this);
+        prensentateurCode.ObtenirCode();
 
 
     }

@@ -39,7 +39,9 @@ public class PresentateurStat {
 
                 try {
                     //Demander au DAO de récupérer la liste des comptes bancaires :
-                    List<Stat> liste = DAO.getStats();
+                    modele = ModeleManager.getInstance();
+                    List<Stat> liste = null;
+                    liste = DAO.getStats();
                     //Injecter la liste dans le modèle :
                     modele.setStats(liste);
                     //Demander à la vue (activité) de rafraichir le ListView :

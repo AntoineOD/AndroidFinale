@@ -4,6 +4,7 @@ import android.app.Activity;
 
 import com.example.finaleandroid.activites.JeuxActivity;
 import com.example.finaleandroid.activites.MainActivity;
+import com.example.finaleandroid.dao.CodeThread;
 import com.example.finaleandroid.dao.DAO;
 import com.example.finaleandroid.modele.Modele;
 import com.example.finaleandroid.modele.ModeleManager;
@@ -39,36 +40,20 @@ public class PrensentateurCode {
 
 
 
-public void ObtenirCode(){
-    new Thread() {
-        @Override
-        public void run() {
-            try {
-                List<Code> liste = DAO.getCodes();
-                modele.setCodes(liste);
-                ((JeuxActivity) activite).runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        ((JeuxActivity) activite).afficherMessage("Code obtenus avec succès");
-                    }
-                });
-            } catch (JSONException e) {
-                ((JeuxActivity) activite).runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        ((JeuxActivity) activite).afficherMessage("Problème dans le JSON des codes");
-                    }
-                });
-            } catch (IOException e) {
-                ((JeuxActivity) activite).runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        ((JeuxActivity) activite).afficherMessage("Problème d'accès à l'API");
-                    }
-                });
+    public void ObtenirCode() {
+        modele = ModeleManager.getInstance();
+        (new Thread() {
+            @Override
+            public void run() {
+                System.out.println("Thread is running..."); // Add logging
+                try {
+                    CodeThread c = new CodeThread();
+                    c.runThread();
+                } catch (JSONException | IOException e) {
+                    e.printStackTrace(); // Handle or log the exception
+                }
             }
-        }
-    }.start();
+        }).start();
     }
     public Code obtenirCodeSecret(int longueurCode, int nbCouleurs) {
         List<Code> codesCorespondant = new ArrayList();
@@ -82,7 +67,6 @@ public void ObtenirCode(){
             return codesCorespondant.get(randomIndex);
         }
         return null;
-
     }
 }
 
