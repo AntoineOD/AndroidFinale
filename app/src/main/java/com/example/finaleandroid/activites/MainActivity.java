@@ -63,6 +63,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         PrensentateurCode prensentateurCode = new PrensentateurCode(this);
         prensentateurCode.ObtenirCode();
 
+        PresentateurStat presentateurStat = new PresentateurStat(this);
+        presentateurStat.ObtenirStatistiques();
+
         PresentateurCouleur presentateurCouleur = new PresentateurCouleur(this);
         presentateurCouleur.ObtenirCouleurs();
     }

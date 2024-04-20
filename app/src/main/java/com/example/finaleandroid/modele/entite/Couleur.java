@@ -1,12 +1,16 @@
 package com.example.finaleandroid.modele.entite;
 
+import java.util.List;
+
 public class Couleur {
 
-    String couleur;
+    List<String> couleur;
 
-    public String getCouleur() {
+    public List<String> getCouleur() {
         return couleur;
     }
 
-
+    public void setCouleur(List<String> couleur) {
+        this.couleur = couleur;
+    }
 }

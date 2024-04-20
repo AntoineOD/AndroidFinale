@@ -45,26 +45,8 @@ public class PresentateurStat {
                     //Injecter la liste dans le modèle :
                     modele.setStats(liste);
                     //Demander à la vue (activité) de rafraichir le ListView :
-                    ((JeuxActivity)activite).runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            ((JeuxActivity)activite).afficherMessage("Statistique obtenus avec succès");
-                        }
-                    });
                 } catch (JSONException e) {
-                    ((JeuxActivity)activite).runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            ((JeuxActivity)activite).afficherMessage("Problème dans le JSON des comptes");
-                        }
-                    });
                 } catch (IOException e) {
-                    ((JeuxActivity)activite).runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            ((JeuxActivity)activite).afficherMessage("Problème d'accès à l'API");
-                        }
-                    });
                 }
             }
         }.start();

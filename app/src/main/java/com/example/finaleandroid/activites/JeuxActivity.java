@@ -34,7 +34,7 @@ public class JeuxActivity extends AppCompatActivity implements View.OnClickListe
     Drawable dice;
     private Code codeSecret;
     private Stat statistique;
-    private List<Couleur> listCouleur;
+    private List<String> listCouleur;
     private List<Code> listCodes;
     private List<Stat> listStats;
     private PrensentateurCode prensentateurCode;
@@ -115,7 +115,7 @@ public class JeuxActivity extends AppCompatActivity implements View.OnClickListe
         }
         for (int i = 0; i < nbCouleurs; i++) {
             Button btnPalette = new Button(this);
-            int couleur = Integer.parseInt(listCouleur.get(i).getCouleur());
+            int couleur = Integer.parseInt(listCouleur.get(i));
             btnPalette.setBackgroundColor(couleur);
             //Couleur a modifier avec le JSON
             GridLayout.LayoutParams params = new GridLayout.LayoutParams();

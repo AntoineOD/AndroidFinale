@@ -16,7 +16,7 @@ public class DAO {
     public static List<Stat> getStats() throws IOException, JSONException {
         return new HttpJsonService().getStats();
     }
-    public static List<Couleur> getCouleurs() throws IOException, JSONException {
+    public static List<String> getCouleurs() throws IOException, JSONException {
         return new HttpJsonService().getCouleurs();
     }
 

@@ -12,6 +12,7 @@ public class Modele {
    private List<Code> codeList = new ArrayList<>() ;
     private List<Stat> statList = new ArrayList<>() ;
     private List<Couleur> couleurList = new ArrayList<>() ;
+    private Couleur couleur = new Couleur();
 
   public List<Code> getCodes() {
       return codeList;
@@ -38,8 +39,8 @@ public class Modele {
       return null;
    }
 
-    public List<Couleur> getCouleurs() {
-      return couleurList;
+    public List<String> getCouleurs() {
+      return couleur.getCouleur();
     }
 
     public Couleur getCouleur(String id) {
@@ -48,7 +49,7 @@ public class Modele {
                 return couleur;
         return null;
     }
-    public void setCouleurs(List<Couleur> couleurList) {
-      this.couleurList = couleurList;
+    public void setCouleurs(List<String> couleurList) {
+      couleur.setCouleur(couleurList);
     }
 }

@@ -69,7 +69,7 @@ public class HttpJsonService {
         return true;
     }
 
-    public List<Couleur> getCouleurs() throws IOException {
+    public List<String> getCouleurs() throws IOException {
         OkHttpClient okHttpClient = new OkHttpClient();
         Request request = new Request.Builder()
                 .url(URL_POINT_ENTREE + "/couleursDisponibles")
@@ -78,7 +78,8 @@ public class HttpJsonService {
         String responseBody = response.body().string();
         if (isValidJSON(responseBody)) {
             ObjectMapper objectMapper = new ObjectMapper();
-            List<Couleur> listeCouleur = Arrays.asList(objectMapper.readValue(responseBody, Couleur[].class));
+            List<String> listeCouleur = (List<String>) objectMapper.readValue(responseBody, Couleur.class);
+            System.out.println("test");
             return listeCouleur;
         } else {
             Log.e("HttpJsonService:getStats()", "Invalid JSON response");

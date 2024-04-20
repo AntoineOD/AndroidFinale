@@ -27,7 +27,7 @@ public class PresentateurCouleur {
         this.modele = ModeleManager.getInstance();
     }
 
-    public List<Couleur> getCouleurs() {
+    public List<String> getCouleurs() {
         return modele.getCouleurs();
     }
 
@@ -41,25 +41,24 @@ public class PresentateurCouleur {
         new Thread() {
             @Override
             public void run() {
-
                 try {
                     modele = ModeleManager.getInstance();
-                    List<Couleur> liste = null;
+                    List<String> liste = null;
                     liste = DAO.getCouleurs();
                     modele.setCouleurs(liste);
                 } catch (JSONException e) {
 
                 } catch (IOException e) {
-
+                    System.out.println(e);
                 }
             }
         }.start();
     }
 
-    public List<Couleur> getCouleursCorespondantes(int nbCouleurs) {
+    public List<String> getCouleursCorespondantes(int nbCouleurs) {
 
-        List<Couleur> couleurs = modele.getCouleurs();
-        List<Couleur> couleursCorespondantes = new ArrayList<>();
+        List<String> couleurs = modele.getCouleurs();
+        List<String> couleursCorespondantes = new ArrayList<>();
         for (int i = 0; i < nbCouleurs; i++) {
             couleursCorespondantes.add(couleurs.get(i));
         }
