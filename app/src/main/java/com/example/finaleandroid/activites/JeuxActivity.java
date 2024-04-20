@@ -31,6 +31,8 @@ public class JeuxActivity extends AppCompatActivity implements View.OnClickListe
     private Code codeSecret;
     private Stat statistique;
     private List<Couleur> listCouleur;
+    private List<Code> listCodes;
+    private List<Stat> listStats;
     private PrensentateurCode prensentateurCode;
     private PresentateurStat prensentateurStat;
     private PresentateurCouleur presentateurCouleur;
@@ -51,7 +53,7 @@ public class JeuxActivity extends AppCompatActivity implements View.OnClickListe
         btnValider = findViewById(R.id.btnValider);
         btnAbandonner = findViewById(R.id.btnAbandonner);
         btnNouvellePartie = findViewById(R.id.btnNouvellePartie);
-        btnMenuPrincipal = findViewById(R.id.buttonMenuPrincipal);
+        btnMenuPrincipal = findViewById(R.id.btnMenuPrincipal);
         btnValider.setOnClickListener(this);
         btnAbandonner.setOnClickListener(this);
         btnNouvellePartie.setOnClickListener(this);
@@ -67,13 +69,16 @@ public class JeuxActivity extends AppCompatActivity implements View.OnClickListe
 
         prensentateurCode = new PrensentateurCode(this);
         prensentateurCode.ObtenirCode();
+        listCodes = prensentateurCode.getCodes();
         codeSecret = prensentateurCode.obtenirCodeSecret(longueurCode, nbCouleurs);
 
         prensentateurStat = new PresentateurStat(this);
-        prensentateurStat.ObtenirStat();
+        prensentateurStat.ObtenirStatistiques();
+        listStats = prensentateurStat.getStats();
         statistique = prensentateurStat.obtenirStatistiqueCorrespondante(codeSecret.getId());
 
         presentateurCouleur = new PresentateurCouleur(this);
+        presentateurCouleur.ObtenirCouleurs();
         presentateurCouleur.getCouleurs();
         listCouleur = presentateurCouleur.getCouleursCorespondantes(nbCouleurs);
 

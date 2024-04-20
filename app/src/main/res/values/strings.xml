@@ -11,4 +11,8 @@
     <string name="longeur_du_code">Longeur du code:</string>
     <string name="nombre_de_couleurs">Nombre de couleurs:</string>
     <string name="nombre_de_tentatives">Nombre de tentatives:</string>
+    <string name="abandonner">Abandonner</string>
+    <string name="menu_principale">Menu principale</string>
+    <string name="nouvelle_partie">Nouvelle partie</string>
+    <string name="valider_la_tentative">Valider la tentative</string>
 </resources>

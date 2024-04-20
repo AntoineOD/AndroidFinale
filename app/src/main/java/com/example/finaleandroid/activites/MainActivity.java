@@ -34,9 +34,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button btnEmail;
     Boolean emailVerfi;
     final int REQUEST_CODE = 1;
-    private int longueurCode;
-    private int nbCouleurs;
-    private  int nbTentatives;
+    private int longueurCode =4;
+    private int nbCouleurs=8;
+    private  int nbTentatives=10;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +57,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnStart.setOnClickListener(this);
         btnConfig.setOnClickListener(this);
         btnHistorique.setOnClickListener(this);
-
 
 
     }

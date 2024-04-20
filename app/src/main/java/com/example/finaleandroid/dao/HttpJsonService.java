@@ -20,7 +20,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class HttpJsonService {
-    private static String URL_POINT_ENTREE = "http://http://10.0.2.2:3000";
+    private static String URL_POINT_ENTREE = "http://10.0.2.2:3000";
 
     public List<Code> getCodes() throws IOException, JSONException {
         OkHttpClient okHttpClient = new OkHttpClient();

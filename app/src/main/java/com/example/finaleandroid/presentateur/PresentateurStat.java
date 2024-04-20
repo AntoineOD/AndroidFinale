@@ -31,10 +31,8 @@ public class PresentateurStat {
     public List<Stat> getStats() {
         return modele.getStats();
     }
-    public void ObtenirStat(){
 
-    }
-    public void obtenirStatistiques(){
+    public void ObtenirStatistiques(){
         new Thread() {
             @Override
             public void run() {

@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/btnNouvellePartie"
+    android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -72,7 +72,7 @@
         android:id="@+id/btnValider"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Valider la tentative"
+        android:text="@string/valider_la_tentative"
         app:layout_constraintBottom_toTopOf="@+id/guideline20"
         app:layout_constraintEnd_toStartOf="@+id/guideline17"
         app:layout_constraintHorizontal_bias="0.502"
@@ -81,10 +81,10 @@
         app:layout_constraintVertical_bias="0.627" />
 
     <Button
-        android:id="@+id/buttonMenuPrincipal"
+        android:id="@+id/btnMenuPrincipal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Menu principale"
+        android:text="@string/menu_principale"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline17"
         app:layout_constraintStart_toStartOf="parent"
@@ -94,7 +94,7 @@
         android:id="@+id/btnAbandonner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Abandonner"
+        android:text="@string/abandonner"
         app:layout_constraintBottom_toTopOf="@+id/guideline21"
         app:layout_constraintEnd_toStartOf="@+id/guideline19"
         app:layout_constraintHorizontal_bias="0.439"
@@ -103,16 +103,14 @@
         app:layout_constraintVertical_bias="0.482" />
 
     <Button
-        android:id="@+id/buttonNouvellePartie"
+        android:id="@+id/btnNouvellePartie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nouvelle partie"
+        android:text="@string/nouvelle_partie"
         app:layout_constraintBottom_toTopOf="@+id/guideline21"
         app:layout_constraintEnd_toStartOf="@+id/guideline17"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/guideline19"
-        app:layout_constraintTop_toTopOf="@+id/guideline20"
-        app:layout_constraintVertical_bias="0.482" />
+        app:layout_constraintTop_toTopOf="@+id/guideline20" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline21"

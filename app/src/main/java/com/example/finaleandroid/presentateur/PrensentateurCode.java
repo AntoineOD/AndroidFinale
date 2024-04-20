@@ -41,31 +41,27 @@ public void ObtenirCode(){
     new Thread() {
         @Override
         public void run() {
-
             try {
-                //Demander au DAO de récupérer la liste des comptes bancaires :
                 List<Code> liste = DAO.getCodes();
-                //Injecter la liste dans le modèle :
                 modele.setCodes(liste);
-                //Demander à la vue (activité) de rafraichir le ListView :
-                ((JeuxActivity)activite).runOnUiThread(new Runnable() {
+                ((JeuxActivity) activite).runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        ((JeuxActivity)activite).afficherMessage("Code obtenus avec succès");
+                        ((JeuxActivity) activite).afficherMessage("Code obtenus avec succès");
                     }
                 });
             } catch (JSONException e) {
-                ((JeuxActivity)activite).runOnUiThread(new Runnable() {
+                ((JeuxActivity) activite).runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        ((JeuxActivity)activite).afficherMessage("Problème dans le JSON des comptes");
+                        ((JeuxActivity) activite).afficherMessage("Problème dans le JSON des codes");
                     }
                 });
             } catch (IOException e) {
-                ((JeuxActivity)activite).runOnUiThread(new Runnable() {
+                ((JeuxActivity) activite).runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        ((JeuxActivity)activite).afficherMessage("Problème d'accès à l'API");
+                        ((JeuxActivity) activite).afficherMessage("Problème d'accès à l'API");
                     }
                 });
             }
@@ -73,15 +69,15 @@ public void ObtenirCode(){
     }.start();
     }
     public Code obtenirCodeSecret(int longueurCode, int nbCouleurs) {
-        ArrayList<Code> codesCoresspondant = new ArrayList();
+        List<Code> codesCorespondant = new ArrayList();
         for( Code code:modele.getCodes()){
             if(code.getCode().size() == longueurCode && code.getNumberOfColors() == nbCouleurs){
-                codesCoresspondant.add(code);
+                codesCorespondant.add(code);
             }
         }
-        if (!codesCoresspondant.isEmpty()) {
-            int randomIndex = new Random().nextInt(codesCoresspondant.size());
-            return codesCoresspondant.get(randomIndex);
+        if (!codesCorespondant.isEmpty()) {
+            int randomIndex = new Random().nextInt(codesCorespondant.size());
+            return codesCorespondant.get(randomIndex);
         }
         return null;
 

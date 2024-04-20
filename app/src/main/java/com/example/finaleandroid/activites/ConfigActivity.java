@@ -27,20 +27,14 @@ public class ConfigActivity extends AppCompatActivity implements View.OnClickLis
     private int longeurCode;
     private int nbCouleurs;
 
-    int positionSpin1;
-    int positionSpin2;
-    int positionSpin3;
+    int positionSpin1 = 2;
+    int positionSpin2 =6;
+    int positionSpin3=2;
 
     private int nbTentatives;
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.config_activity);
-
-        getPreferences(MODE_PRIVATE).edit()
-                .remove("positionSpin1")
-                .remove("positionSpin2")
-                .remove("positionSpin3")
-                .apply();
 
         txtTitre = findViewById(R.id.txtConfig);
         txtLongCode = findViewById(R.id.txtLongeurCode);
@@ -51,6 +45,8 @@ public class ConfigActivity extends AppCompatActivity implements View.OnClickLis
         spin3 = findViewById(R.id.spin3);
         btnSave = findViewById(R.id.btnSave);
         btnSave.setOnClickListener(this);
+
+
 
         ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this, R.array.spinner_longueur_code, android.R.layout.simple_spinner_item);
         adapter1.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
@@ -63,22 +59,15 @@ public class ConfigActivity extends AppCompatActivity implements View.OnClickLis
         ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(this, R.array.spinner_nb_tentatives, android.R.layout.simple_spinner_item);
         adapter3.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
         spin3.setAdapter(adapter3);
-        if (savedInstanceState == null) {
-            restoreSpinnerPositions();
-        } else {
-            positionSpin1 = savedInstanceState.getInt("positionSpin1", 2);
-            positionSpin2 = savedInstanceState.getInt("positionSpin2", 6);
-            positionSpin3 = savedInstanceState.getInt("positionSpin3", 2);
-            updateSpinners();
-        }
 
+        spin1.setSelection(positionSpin1);
+        spin2.setSelection(positionSpin2);
+        spin3.setSelection(positionSpin3);
         spin1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedItem = (String) parent.getItemAtPosition(position);
                 longeurCode = Integer.parseInt(selectedItem);
-                positionSpin1 = position;
-                spin1.setSelection(positionSpin1);
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
@@ -92,8 +81,6 @@ public class ConfigActivity extends AppCompatActivity implements View.OnClickLis
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedItem = (String) parent.getItemAtPosition(position);
                 nbCouleurs = Integer.parseInt(selectedItem);
-                positionSpin2 = position;
-                spin2.setSelection(positionSpin2);
             }
 
             @Override
@@ -107,8 +94,6 @@ public class ConfigActivity extends AppCompatActivity implements View.OnClickLis
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedItem = (String) parent.getItemAtPosition(position);
                 nbTentatives = Integer.parseInt(selectedItem);
-                positionSpin3 = position;
-                spin3.setSelection(positionSpin3);
             }
 
             @Override
@@ -118,64 +103,6 @@ public class ConfigActivity extends AppCompatActivity implements View.OnClickLis
         });
     }
 
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        // Save spinner positions
-        outState.putInt("positionSpin1", positionSpin1);
-        outState.putInt("positionSpin2", positionSpin2);
-        outState.putInt("positionSpin3", positionSpin3);
-    }
-
-
-    private void restoreSpinnerPositions() {
-        // Restore the spinner positions from preferences
-        positionSpin1 = 2;
-        positionSpin2 = 6;
-        positionSpin3 = 2;
-        updateSpinners();
-    }
-
-    private void updateSpinners() {
-        spin1.setSelection(positionSpin1);
-        spin2.setSelection(positionSpin2);
-        spin3.setSelection(positionSpin3);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        // Restore the spinner positions
-        positionSpin1 = getPreferences(MODE_PRIVATE).getInt("positionSpin1", 2);
-        positionSpin2 = getPreferences(MODE_PRIVATE).getInt("positionSpin2", 6);
-        positionSpin3 = getPreferences(MODE_PRIVATE).getInt("positionSpin3", 2);
-        spin1.setSelection(positionSpin1);
-        spin2.setSelection(positionSpin2);
-        spin3.setSelection(positionSpin3);
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        // Clear the saved spinner positions
-        getPreferences(MODE_PRIVATE).edit()
-                .remove("positionSpin1")
-                .remove("positionSpin2")
-                .remove("positionSpin3")
-                .apply();
-    }
-
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        // Save the spinner positions
-        getPreferences(MODE_PRIVATE).edit()
-                .putInt("positionSpin1", positionSpin1)
-                .putInt("positionSpin2", positionSpin2)
-                .putInt("positionSpin3", positionSpin3)
-                .apply();
-    }
     @Override
     public void onClick(View v) {
         if(v == btnSave){
