@@ -44,10 +44,8 @@ public void ObtenirCode(){
         @Override
         public void run() {
             try {
-                modele = ModeleManager.getInstance();
-                List<Code> liste = null;
-                liste =DAO.getCodes();
-                modele.setCodes(liste);
+                presentateurcode1 p= new presentateurcode1();
+                p.getCodelist();
 //                ((JeuxActivity) activite).runOnUiThread(new Runnable() {
 //                    @Override
 //                    public void run() {
