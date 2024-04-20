@@ -7,7 +7,7 @@ import java.util.List;
 public class Code {
     private String id;
     private List<String> code;
-    private int nbCouleurs;
+    private int numberOfColors;
 
     // Constructor
     public Code() {
@@ -17,7 +17,7 @@ public class Code {
     public Code(String id, List<String> code, int nbCouleurs) {
         this.id = id;
         this.code = code;
-        this.nbCouleurs = nbCouleurs;
+        this.numberOfColors = nbCouleurs;
     }
 
     // Getters and Setters
@@ -38,11 +38,11 @@ public class Code {
     }
 
     public int getNumberOfColors() {
-        return nbCouleurs;
+        return numberOfColors;
     }
 
     public void setNumberOfColors(int numberOfColors) {
-        this.nbCouleurs = numberOfColors;
+        this.numberOfColors = numberOfColors;
     }
 
 }
