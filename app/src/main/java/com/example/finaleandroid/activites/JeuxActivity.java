@@ -320,7 +320,7 @@ public class JeuxActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         if (correctColor > 0) {
-            for (int i = column - 1; i < column - correctColor - 1; i--) {
+            for (int i = column - 1; i > column - correctColor - 1; i--) {
                 if (i < layerID.length) {
                     GradientDrawable shape = (GradientDrawable) layers.findDrawableByLayerId(layerID[i]);
                     if (shape != null) shape.setColor(Color.RED);
