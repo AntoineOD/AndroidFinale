@@ -15,4 +15,5 @@
     <string name="menu_principale">Menu principale</string>
     <string name="nouvelle_partie">Nouvelle partie</string>
     <string name="valider_la_tentative">Valider la tentative</string>
+    <string name="btnRetourHistorique">Retour</string>
 </resources>

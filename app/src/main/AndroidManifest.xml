@@ -24,6 +24,7 @@
         </activity>
         <activity android:label="FinaleAndroid" android:name=".activites.ConfigActivity"/>
         <activity android:label="FinaleAndroid" android:name=".activites.JeuxActivity"/>
+        <activity android:label="FinaleAndroid" android:name=".activites.HistoriqueActivity"/>
     </application>
 
 </manifest>

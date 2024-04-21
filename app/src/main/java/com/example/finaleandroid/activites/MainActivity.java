@@ -89,6 +89,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivityForResult(intention,REQUEST_CODE);
         }
         else if(v == btnHistorique){
+            Intent intention = new Intent(this, HistoriqueActivity.class);
+            startActivity(intention);
 
         }
         else if(v == btnEmail){
