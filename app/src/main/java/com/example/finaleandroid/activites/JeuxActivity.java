@@ -79,6 +79,9 @@ public class JeuxActivity extends AppCompatActivity implements View.OnClickListe
 
     int[][] buttonCouleurs;
 
+    public GestionnaireBD getGestionnaireBD() {
+        return gestionnaireBD;
+    }
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_jeux);

@@ -8,12 +8,14 @@ import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.finaleandroid.GestionnaireBdManager;
 import com.example.finaleandroid.R;
 
 public class HistoriqueActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button btnRetour;
     private ListView lvHistorique;
+    private GestionnaireBdManager gestionnaireBdManager;
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_historique);
@@ -22,10 +24,10 @@ public class HistoriqueActivity extends AppCompatActivity implements View.OnClic
         btnRetour.setOnClickListener(this);
 
         lvHistorique = findViewById(R.id.historiqueLv);
+        gestionnaireBdManager = new GestionnaireBdManager(this);
 
-        ArrayAdapter adapter = new ArrayAdapter(this,R.layout.layout_element_historique,);
+        ArrayAdapter adapter = new ArrayAdapter(this,R.layout.layout_element_historique,gestionnaireBdManager.getDBUtil().retournerListsPartie());
         lvHistorique.setAdapter(adapter);
-
 
     }
 
