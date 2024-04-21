@@ -10,6 +10,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.finaleandroid.GestionnaireBdManager;
 import com.example.finaleandroid.R;
+import com.example.finaleandroid.adaptateur.MasterMindAdapter;
+import com.example.finaleandroid.modele.entite.Mastermind;
 
 public class HistoriqueActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -26,7 +28,7 @@ public class HistoriqueActivity extends AppCompatActivity implements View.OnClic
         lvHistorique = findViewById(R.id.historiqueLv);
         gestionnaireBdManager = new GestionnaireBdManager(this);
 
-        ArrayAdapter adapter = new ArrayAdapter(this,R.layout.layout_element_historique,gestionnaireBdManager.getDBUtil().retournerListsPartie());
+        MasterMindAdapter adapter = new MasterMindAdapter(this,R.layout.layout_element_historique,gestionnaireBdManager.getDBUtil().retournerListsPartie());
         lvHistorique.setAdapter(adapter);
 
     }

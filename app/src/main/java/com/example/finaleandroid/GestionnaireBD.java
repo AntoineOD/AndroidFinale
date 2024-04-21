@@ -5,10 +5,14 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.example.finaleandroid.modele.entite.Code;
 import com.example.finaleandroid.modele.entite.Mastermind;
 import com.example.finaleandroid.modele.entite.Partie;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class GestionnaireBD extends SQLiteOpenHelper{
     public GestionnaireBD(Context context){
         super(context, Contrat.DATABASE_NOM, null, Contrat.DATABASE_VERSION);
@@ -53,10 +57,10 @@ public class GestionnaireBD extends SQLiteOpenHelper{
         db.execSQL(query);
     }
 
-    public ArrayList<Partie> retournerListsPartie() {
+    public ArrayList<Mastermind> retournerListsPartie() {
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = null;
-        ArrayList<Partie> listeParties = new ArrayList<>();
+        ArrayList<Mastermind> listeParties = new ArrayList<>();
             String query = "SELECT * FROM " + Contrat.TABLE_PARTIES;
             cursor = db.rawQuery(query, null);
             while (cursor.moveToNext()) {
@@ -71,15 +75,12 @@ public class GestionnaireBD extends SQLiteOpenHelper{
                         nbCouleursIndex == -1 || resultatIndex == -1 || nbTentativesIndex == -1) {
                     throw new IllegalArgumentException("Problème avec les colonnes dans la table de bd.");
                 }
-                Partie partie = new Partie();
-                partie.setIdPartie(cursor.getInt(idIndex));
-                partie.setIdCodeSecret(cursor.getString(idCodeSecretIndex));
-                partie.setCourrielJoueur(cursor.getString(emailIndex));
-                partie.setCodeSecret(cursor.getString(codeSecretIndex));
-                partie.setNbCouleurs(cursor.getInt(nbCouleursIndex));
-                partie.setResultat(cursor.getString(resultatIndex));
-                partie.setNbTentatives(cursor.getInt(nbTentativesIndex));
-                listeParties.add(partie);
+                String text = cursor.getString(idCodeSecretIndex);
+                List<String> list = Arrays.asList(text.split(""));
+                Code code = new Code(String.valueOf(cursor.getInt(idIndex)),list, cursor.getInt(nbCouleursIndex) );
+                Mastermind mastermind = new Mastermind(code, cursor.getString(emailIndex));
+                mastermind.setNbTentatives(cursor.getInt(nbTentativesIndex));
+                listeParties.add(mastermind);
             }
             return listeParties;
     }

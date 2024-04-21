@@ -19,6 +19,8 @@ public class Mastermind {
     private boolean partieEnCours;
     private List<Code> listTentatives;
     private List<Feedback> listFeedbacks;
+    private int nbTentatives;
+    private String resultat;
 
     public Mastermind(Code codeSecret, String courrielJoueur) {
        this.codeSecret = codeSecret;
@@ -75,9 +77,6 @@ public void setPartieGagnee(boolean partieGagnee) {
         return this.codeSecret.getId();
     }
 
-    public int getNbTentatives() {
-        return this.listTentatives.size();
-    }
 
     public int getNbCouleurs() {
         return codeSecret.getNbCouleurs();
@@ -93,7 +92,15 @@ public void setPartieGagnee(boolean partieGagnee) {
         }
         return resultat;
     }
-
+    public void setNbTentatives(int i){
+        this.nbTentatives = i;
+    }
+    public int getNbTentatives(){
+        return this.nbTentatives;
+    }
+    public void setResultat(String i){
+        this.resultat = i;
+    }
 //    public int getLongueurCode() {
 //        return this.longueurCode;
 //    }

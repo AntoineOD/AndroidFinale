@@ -249,7 +249,19 @@ public class JeuxActivity extends AppCompatActivity implements View.OnClickListe
                 mastermind.addFeedback(feedback);
 
                 updateFeedbackDisplay(currentRow, feedback);
-                if (currentRow > 0) currentRow--;
+                if (currentRow > 0) {
+                    currentRow--;
+                }
+                else{
+                    mastermind.setPartiePerdue(true);
+                    mastermind.setNbTentatives(row);
+                    gestionnaireBD.ajouterPartie(mastermind);
+                }
+                if(feedback.getCouleurCorrecteEtPositionCorrecte() == column){
+                    mastermind.setPartieGagnee(true);
+                    mastermind.setNbTentatives(row - currentRow);
+                    gestionnaireBD.ajouterPartie(mastermind);
+                }
             }
         } else if (v == btnAbandonner) {
             verifAbbandon();
@@ -293,7 +305,7 @@ public class JeuxActivity extends AppCompatActivity implements View.OnClickListe
                         // User clicked Yes button
                         // Proceed with your action
                         mastermind.setPartieAbandonnee(true);
-                        layoutFeedback.removeAllViews();
+                        gestionnaireBD.ajouterPartie(mastermind);
                         finish();
                     }
                 })
