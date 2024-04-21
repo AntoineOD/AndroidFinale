@@ -10,8 +10,8 @@ public class Stat {
         // Default constructor
     }
 
-    public Stat(String id, String idCode, String record, String courriel) {
-        this.id = id;
+    public Stat(String idCode, String record, String courriel) {
+      //  this.id = id;
         this.idCode = idCode;
         this.record = record;
         this.courriel = courriel;

@@ -60,6 +60,7 @@ public class JeuxActivity extends AppCompatActivity implements View.OnClickListe
     private int longueurCode;
     private int nbCouleurs;
     private int nbTentatives;
+    private  int getNbTentativesUtilisateur;
     private String courriel;
     private Mastermind mastermind;
     private int selectedColor = 0;
@@ -259,8 +260,18 @@ public class JeuxActivity extends AppCompatActivity implements View.OnClickListe
                     finish();
                 }
                 if(feedback.getCouleurCorrecteEtPositionCorrecte() == column){
+                    getNbTentativesUtilisateur = row - currentRow;
+                    if(statistique== null){
+                        prensentateurStat.ajouterStatistique(new Stat(codeSecret.getId(),courriel, String.valueOf(getNbTentativesUtilisateur)));
+
+                    }else if(Integer.parseInt(statistique.getRecord())  < getNbTentativesUtilisateur){
+                        statistique.setRecord(String.valueOf(getNbTentativesUtilisateur));
+                        prensentateurStat.modifierStatistique(statistique);
+                    }
+
+
                     mastermind.setResultat("réussie");
-                    mastermind.setNbTentatives(row - currentRow);
+                    mastermind.setNbTentatives(getNbTentativesUtilisateur);
                     gestionnaireBD.ajouterPartie(mastermind);
                     finish();
                 }

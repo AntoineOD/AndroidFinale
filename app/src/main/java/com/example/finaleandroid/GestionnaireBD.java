@@ -75,7 +75,7 @@ public class GestionnaireBD extends SQLiteOpenHelper{
                         nbCouleursIndex == -1 || resultatIndex == -1 || nbTentativesIndex == -1) {
                     throw new IllegalArgumentException("Problème avec les colonnes dans la table de bd.");
                 }
-                String text = cursor.getString(idCodeSecretIndex);
+                String text = cursor.getString(codeSecretIndex);
                 List<String> list = Arrays.asList(text.split(""));
                 Code code = new Code(String.valueOf(cursor.getInt(idIndex)),list, cursor.getInt(nbCouleursIndex) );
                 Mastermind mastermind = new Mastermind(code, cursor.getString(emailIndex));
