@@ -80,6 +80,7 @@ public class GestionnaireBD extends SQLiteOpenHelper{
                 Code code = new Code(String.valueOf(cursor.getInt(idIndex)),list, cursor.getInt(nbCouleursIndex) );
                 Mastermind mastermind = new Mastermind(code, cursor.getString(emailIndex));
                 mastermind.setNbTentatives(cursor.getInt(nbTentativesIndex));
+                mastermind.setResultat(cursor.getString(resultatIndex));
                 listeParties.add(mastermind);
             }
             return listeParties;

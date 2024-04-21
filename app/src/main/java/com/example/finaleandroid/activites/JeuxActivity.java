@@ -253,14 +253,16 @@ public class JeuxActivity extends AppCompatActivity implements View.OnClickListe
                     currentRow--;
                 }
                 else{
-                    mastermind.setPartiePerdue(true);
+                    mastermind.setResultat("échouée");
                     mastermind.setNbTentatives(row);
                     gestionnaireBD.ajouterPartie(mastermind);
+                    finish();
                 }
                 if(feedback.getCouleurCorrecteEtPositionCorrecte() == column){
-                    mastermind.setPartieGagnee(true);
+                    mastermind.setResultat("réussie");
                     mastermind.setNbTentatives(row - currentRow);
                     gestionnaireBD.ajouterPartie(mastermind);
+                    finish();
                 }
             }
         } else if (v == btnAbandonner) {
@@ -304,7 +306,7 @@ public class JeuxActivity extends AppCompatActivity implements View.OnClickListe
                     public void onClick(DialogInterface dialog, int id) {
                         // User clicked Yes button
                         // Proceed with your action
-                        mastermind.setPartieAbandonnee(true);
+                        mastermind.setResultat("abandonnée");
                         gestionnaireBD.ajouterPartie(mastermind);
                         finish();
                     }

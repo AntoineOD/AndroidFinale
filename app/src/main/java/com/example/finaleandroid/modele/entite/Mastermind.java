@@ -82,15 +82,7 @@ public void setPartieGagnee(boolean partieGagnee) {
         return codeSecret.getNbCouleurs();
     }
     public String getResultatPartie() {
-        String resultat = "";
-        if (this.partieGagnee) {
-            resultat =  "réussie";
-        } else if (this.partiePerdue) {
-            resultat = "échouée";
-        } else if (this.partieAbandonnee) {
-            resultat =  "abandonnée";
-        }
-        return resultat;
+        return this.resultat;
     }
     public void setNbTentatives(int i){
         this.nbTentatives = i;
