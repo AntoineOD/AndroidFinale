@@ -107,7 +107,7 @@ public class JeuxActivity extends AppCompatActivity implements View.OnClickListe
         presentateurCouleur.ObtenirCouleurs();
         presentateurCouleur.getCouleurs();
         listCouleur = presentateurCouleur.getCouleursCorespondantes(nbCouleurs);
-        
+
         androidx.gridlayout.widget.GridLayout gridLayoutTentatives = findViewById(R.id.gridLayoutTentatives);
 
         row = nbTentatives;
