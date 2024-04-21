@@ -241,18 +241,19 @@ public class JeuxActivity extends AppCompatActivity implements View.OnClickListe
                 // Log or use tentativeCouleurs as needed
                 ImageView currentDiceImg = (ImageView) layoutFeedback.getChildAt(currentRow);
                 Drawable currentDiceDraw = currentDiceImg.getDrawable().mutate();
+                currentDiceDraw = currentDiceDraw.getConstantState().newDrawable().mutate();
                 if(feedback.getCouleurCorrecteEtPositionCorrecte() > 0){
                     LayerDrawable lay = (LayerDrawable) currentDiceDraw;
                     for(int i = 0; i<feedback.getCouleurCorrecteEtPositionCorrecte(); i++){
                         GradientDrawable test = (GradientDrawable) lay.findDrawableByLayerId(layerID[i]);
-                        test.setColor(Color.RED);
+                        test.setColor(Color.GREEN);
                     }
                 }
                 if(feedback.getCouleurCorrecteEtPositionIncorrecte() > 0){
                     LayerDrawable lay = (LayerDrawable) currentDiceDraw;
                     for(int i = column - 1; i>column - feedback.getCouleurCorrecteEtPositionIncorrecte() - 1; i--){
                         GradientDrawable test = (GradientDrawable) lay.findDrawableByLayerId(layerID[i]);
-                        test.setColor(Color.GREEN);
+                        test.setColor(Color.RED);
                     }
                 }
                 currentDiceImg.setImageDrawable(currentDiceDraw);
