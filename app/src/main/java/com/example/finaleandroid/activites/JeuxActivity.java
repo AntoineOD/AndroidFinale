@@ -1,6 +1,7 @@
 package com.example.finaleandroid.activites;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -16,9 +17,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import com.example.finaleandroid.GestionnaireBD;
 import com.example.finaleandroid.R;
 import com.example.finaleandroid.dao.DAO;
 import com.example.finaleandroid.modele.entite.Code;
@@ -35,8 +38,10 @@ import org.json.JSONException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+
 import androidx.core.graphics.drawable.DrawableCompat;
 
 public class JeuxActivity extends AppCompatActivity implements View.OnClickListener {
@@ -69,6 +74,7 @@ public class JeuxActivity extends AppCompatActivity implements View.OnClickListe
     LayerDrawable layerDrawable;
     ImageView imgDice;
     int[] layerID;
+    static GestionnaireBD gestionnaireBD;
 
 
     int[][] buttonCouleurs;
@@ -76,6 +82,8 @@ public class JeuxActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_jeux);
+
+        gestionnaireBD = new GestionnaireBD(this);
 
         btnValider = findViewById(R.id.btnValider);
         btnAbandonner = findViewById(R.id.btnAbandonner);
@@ -92,9 +100,9 @@ public class JeuxActivity extends AppCompatActivity implements View.OnClickListe
         longueurCode = intention.getIntExtra("LONGUEUR_CODE", 4);
         nbTentatives = intention.getIntExtra("NB_TENTATIVES", 10);
         courriel = intention.getStringExtra("COURRIEL");
-        currentRow = nbTentatives -1;
+        currentRow = nbTentatives - 1;
 
-        prensentateurCode=new PrensentateurCode(this);
+        prensentateurCode = new PrensentateurCode(this);
         listCodes = prensentateurCode.getCodes();
         codeSecret = prensentateurCode.obtenirCodeSecret(longueurCode, nbCouleurs);
 
@@ -117,7 +125,7 @@ public class JeuxActivity extends AppCompatActivity implements View.OnClickListe
         buttonCouleurs = new int[nbTentatives][longueurCode];
         layerID = new int[5];
 
-        mastermind = new Mastermind(codeSecret,courriel);
+        mastermind = new Mastermind(codeSecret, courriel);
 
         gridLayoutTentatives.setRowCount(row);
         gridLayoutTentatives.setColumnCount(column);
@@ -150,8 +158,8 @@ public class JeuxActivity extends AppCompatActivity implements View.OnClickListe
             gridLayoutPalette.setRowCount(6);
             gridLayoutPalette.setColumnCount(2);
         } else {
-            gridLayoutPalette.setRowCount(1);
-            gridLayoutPalette.setColumnCount(6);
+            gridLayoutPalette.setRowCount(6);
+            gridLayoutPalette.setColumnCount(1);
         }
         for (int i = 0; i < nbCouleurs; i++) {
             Button btnPalette = new Button(this);
@@ -181,12 +189,10 @@ public class JeuxActivity extends AppCompatActivity implements View.OnClickListe
         layerID[1] = R.id.Cercle2;
         // Feedback
         layoutFeedback = findViewById(R.id.layoutReponses);
-        if(column==2)
-        {
+        if (column == 2) {
             this.dice = getResources().getDrawable(R.drawable.dice2);
         }
-        if(column==3)
-        {
+        if (column == 3) {
             this.dice = getResources().getDrawable(R.drawable.dice3);
             layerID[2] = R.id.Cercle3;
         }
@@ -243,34 +249,85 @@ public class JeuxActivity extends AppCompatActivity implements View.OnClickListe
                 if (currentRow > 0) currentRow--;
             }
         } else if (v == btnAbandonner) {
-            // Handle abandon
+            verifAbbandon();
         } else if (v == btnNouvellePartie) {
-            // Handle new game
+            verifNewGame();
         } else if (v == btnMenuPrincipal) {
             finish();
         }
     }
 
+    private void verifNewGame() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Voulez-vous commencer une nouvelle partie? Celle-ci sera abandonnée.")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // User clicked Yes button
+                        // Proceed with your action
+                        mastermind.setPartieAbandonnee(true);
+                        gestionnaireBD.ajouterPartie(mastermind);
+                        Intent intent = getIntent();
+                        finish();
+                        startActivity(intent);
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // User clicked No button
+                        // Do nothing or handle as needed
+                    }
+                });
+        // Create and show the AlertDialog
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    private void verifAbbandon() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Voulez-vous vraiment abandonner la partie?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // User clicked Yes button
+                        // Proceed with your action
+                        mastermind.setPartieAbandonnee(true);
+                        layoutFeedback.removeAllViews();
+                        finish();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // User clicked No button
+                        // Do nothing or handle as needed
+                    }
+                });
+        // Create and show the AlertDialog
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
     private void updateFeedbackDisplay(int row, Feedback feedback) {
         ImageView feedbackImage = (ImageView) layoutFeedback.getChildAt(row);
-        LayerDrawable layers = (LayerDrawable) feedbackImage.getDrawable();
+        Drawable Original = (LayerDrawable) feedbackImage.getDrawable().getConstantState().newDrawable().mutate();
+        LayerDrawable layers = (LayerDrawable) Original;
         int correctPosition = feedback.getCouleurCorrecteEtPositionCorrecte();
         int correctColor = feedback.getCouleurCorrecteEtPositionIncorrecte();
 
-        // Update for correct position and color
-        for (int i = 0; i < correctPosition; i++) {
-            GradientDrawable shape = (GradientDrawable) layers.findDrawableByLayerId(layerID[i]);
-            if (shape != null) shape.setColor(Color.GREEN);
-        }
-
-        // Update for correct color but wrong position
-        for (int i = correctPosition; i < correctPosition + correctColor; i++) {
-            if (i < layerID.length) {
+        if (correctPosition > 0) {
+            for (int i = 0; i < correctPosition; i++) {
                 GradientDrawable shape = (GradientDrawable) layers.findDrawableByLayerId(layerID[i]);
-                if (shape != null) shape.setColor(Color.RED);
+                if (shape != null) shape.setColor(Color.GREEN);
             }
         }
 
+        if (correctColor > 0) {
+            for (int i = column - 1; i < column - correctColor - 1; i--) {
+                if (i < layerID.length) {
+                    GradientDrawable shape = (GradientDrawable) layers.findDrawableByLayerId(layerID[i]);
+                    if (shape != null) shape.setColor(Color.RED);
+                }
+            }
+        }
+        feedbackImage.setImageDrawable(Original);
         feedbackImage.invalidate();
     }
 }

@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.finaleandroid.GestionnaireBD;
 import com.example.finaleandroid.R;
 import com.example.finaleandroid.activites.ConfigActivity;
 import com.example.finaleandroid.activites.JeuxActivity;
