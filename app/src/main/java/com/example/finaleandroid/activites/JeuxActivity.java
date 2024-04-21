@@ -65,6 +65,10 @@ public class JeuxActivity extends AppCompatActivity implements View.OnClickListe
     Feedback feedback;
     Code tentative;
     List<String> tentativeCouleurs;
+    LayerDrawable layerDrawable;
+    ImageView imgDice;
+    int[] layerID;
+
 
     int[][] buttonCouleurs;
 
@@ -111,6 +115,7 @@ public class JeuxActivity extends AppCompatActivity implements View.OnClickListe
 
         tentativeCouleurs = new ArrayList<>();
         buttonCouleurs = new int[nbTentatives][longueurCode];
+        layerID = new int[5];
 
         gridLayoutTentatives.setRowCount(row);
         gridLayoutTentatives.setColumnCount(column);
@@ -170,6 +175,8 @@ public class JeuxActivity extends AppCompatActivity implements View.OnClickListe
             });
             gridLayoutPalette.addView(btnPalette);
         }
+        layerID[0] = R.id.Cercle1;
+        layerID[1] = R.id.Cercle2;
         // Feedback
         layoutFeedback = findViewById(R.id.layoutReponses);
         if(column==2)
@@ -179,23 +186,30 @@ public class JeuxActivity extends AppCompatActivity implements View.OnClickListe
         if(column==3)
         {
             this.dice = getResources().getDrawable(R.drawable.dice3);
+            layerID[2] = R.id.Cercle3;
         }
         if (column == 4) {
             this.dice = getResources().getDrawable(R.drawable.dice4);
+            layerID[2] = R.id.Cercle3;
+            layerID[3] = R.id.Cercle4;
         }
         if (column == 5) {
             this.dice = getResources().getDrawable(R.drawable.dice5);
+            layerID[2] = R.id.Cercle3;
+            layerID[3] = R.id.Cercle4;
+            layerID[4] = R.id.Cercle5;
         }
         if (column == 6) {
             this.dice = getResources().getDrawable(R.drawable.dice6);
+            layerID[2] = R.id.Cercle3;
+            layerID[3] = R.id.Cercle4;
+            layerID[4] = R.id.Cercle5;
+            layerID[5] = R.id.Cercle6;
         }
+        layerDrawable = (LayerDrawable) dice;
         for (int i = 0; i < row; i++) {
-            ImageView imgDice = new ImageView(this);
+            imgDice = new ImageView(this);
             imgDice.setImageDrawable(dice);
-//            LayerDrawable layerDrawable = (LayerDrawable) dice;
-//            GradientDrawable topLeft = (GradientDrawable) layerDrawable.findDrawableByLayerId(R.id.hautGauche);
-//            topLeft.setColor(Color.RED);
-//            imgDice.setImageDrawable(dice);
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(100, 100);
             layoutParams.setMargins(5, 10, 5, 10);
             imgDice.setLayoutParams(layoutParams);
@@ -220,10 +234,46 @@ public class JeuxActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 tentative = new Code(codeSecret.getId(), tentativeCouleurs, codeSecret.getNbCouleurs());
                 feedback = new Feedback(codeSecret, tentative);
-                // Log or use tentativeCouleurs as needed
+                ImageView currentDiceImg = (ImageView) layoutFeedback.getChildAt(currentRow);
+                Drawable currentDiceDraw = currentDiceImg.getDrawable();
+                if(feedback.getCouleurCorrecteEtPositionCorrecte() > 0){
+                    for(int i = 0; i<feedback.getCouleurCorrecteEtPositionCorrecte(); i++){
+                        LayerDrawable lay = (LayerDrawable) currentDiceDraw;
+                        GradientDrawable test = (GradientDrawable) lay.findDrawableByLayerId(layerID[i]);
+                        test.setColor(Color.RED);
+                    }
+                }
+                if(feedback.getCouleurCorrecteEtPositionIncorrecte() > 0){
+                    for(int i = feedback.getCouleurCorrecteEtPositionIncorrecte(); i>0; i--){
+                        LayerDrawable lay = (LayerDrawable) currentDiceDraw;
+                        GradientDrawable test = (GradientDrawable) lay.findDrawableByLayerId(layerID[i]);
+                        test.setColor(Color.GREEN);
+                    }
+                }
+
+//                if(2 > 0){
+//                    for(int i = 0; i<2; i++){
+//                        LayerDrawable lay = (LayerDrawable) currentDiceDraw;
+//                        GradientDrawable test = (GradientDrawable) lay.findDrawableByLayerId(layerID[i]);
+//                        test.setColor(Color.RED);
+//                    }
+//                }
+//                if(2 > 0){
+//                    for(int i = 3; i>2; i--){
+//                        LayerDrawable lay = (LayerDrawable) currentDiceDraw;
+//                        GradientDrawable test = (GradientDrawable) lay.findDrawableByLayerId(layerID[i]);
+//                        test.setColor(Color.GREEN);
+//                    }
+//                }
+                currentDiceImg.setImageDrawable(currentDiceDraw);
+                currentDiceImg.invalidate();
                 if (currentRow > 0) {
                     currentRow--; // Prepare for the next row
                 }
+                //            LayerDrawable layerDrawable = (LayerDrawable) dice;
+//            GradientDrawable topLeft = (GradientDrawable) layerDrawable.findDrawableByLayerId(R.id.hautGauche);
+//            topLeft.setColor(Color.RED);
+//            imgDice.setImageDrawable(dice);
             }
         }else if (v == btnAbandonner) {
 

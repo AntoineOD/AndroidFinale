@@ -9,7 +9,7 @@
     </item>
 
     <!-- Top left dot -->
-    <item android:id="@+id/hautGauche" android:top="4dp" android:left="4dp">
+    <item android:id="@+id/Cercle1" android:top="4dp" android:left="4dp">
         <shape android:shape="oval">
             <size android:width="2dp" android:height="2dp"/>
             <solid android:color="#000000" />
@@ -17,7 +17,7 @@
     </item>
 
     <!-- Bottom right dot -->
-    <item android:id="@+id/basDroit" android:bottom="4dp" android:right="4dp">
+    <item android:id="@+id/Cercle2" android:bottom="4dp" android:right="4dp">
         <shape android:shape="oval">
             <size android:width="2dp" android:height="2dp"/>
             <solid android:color="#000000" />
