@@ -62,7 +62,7 @@ public class JeuxActivity extends AppCompatActivity implements View.OnClickListe
     private int nbTentatives;
     private String courriel;
     private Mastermind mastermind;
-    private int selectedColor = -1;
+    private int selectedColor = 0;
     private int currentRow;
     Button btnValider;
     Button btnAbandonner;
@@ -146,7 +146,7 @@ public class JeuxActivity extends AppCompatActivity implements View.OnClickListe
             btnTentatives.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (selectedColor != -1 && rowNum == currentRow) {
+                    if (selectedColor != 0 && rowNum == currentRow) {
                         v.setBackgroundColor(selectedColor);
                         buttonCouleurs[rowNum][colNum] = selectedColor; // Update the color in the array
                     }
