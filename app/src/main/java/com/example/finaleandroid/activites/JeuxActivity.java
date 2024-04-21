@@ -230,51 +230,47 @@ public class JeuxActivity extends AppCompatActivity implements View.OnClickListe
             if (currentRow >= 0) {
                 tentativeCouleurs.clear();
                 for (int i = 0; i < longueurCode; i++) {
-                    int couleur = buttonCouleurs[currentRow][i];
-                    String hexCoulor = String.format("%08X", couleur).toLowerCase();
-                    tentativeCouleurs.add(hexCoulor);
+                    int color = buttonCouleurs[currentRow][i];
+                    String hexColor = String.format("%08X", color).toLowerCase();
+                    tentativeCouleurs.add(hexColor);
                 }
                 tentative = new Code(codeSecret.getId(), tentativeCouleurs, codeSecret.getNbCouleurs());
                 feedback = new Feedback(codeSecret, tentative);
                 mastermind.addTentative(tentative);
                 mastermind.addFeedback(feedback);
-                // Log or use tentativeCouleurs as needed
-                ImageView currentDiceImg = (ImageView) layoutFeedback.getChildAt(currentRow);
-                Drawable currentDiceDraw = currentDiceImg.getDrawable().mutate();
-                currentDiceDraw = currentDiceDraw.getConstantState().newDrawable().mutate();
-                if(feedback.getCouleurCorrecteEtPositionCorrecte() > 0){
-                    LayerDrawable lay = (LayerDrawable) currentDiceDraw;
-                    for(int i = 0; i<feedback.getCouleurCorrecteEtPositionCorrecte(); i++){
-                        GradientDrawable test = (GradientDrawable) lay.findDrawableByLayerId(layerID[i]);
-                        test.setColor(Color.GREEN);
-                    }
-                }
-                if(feedback.getCouleurCorrecteEtPositionIncorrecte() > 0){
-                    LayerDrawable lay = (LayerDrawable) currentDiceDraw;
-                    for(int i = column - 1; i>column - feedback.getCouleurCorrecteEtPositionIncorrecte() - 1; i--){
-                        GradientDrawable test = (GradientDrawable) lay.findDrawableByLayerId(layerID[i]);
-                        test.setColor(Color.RED);
-                    }
-                }
-                currentDiceImg.setImageDrawable(currentDiceDraw);
-                currentDiceImg.invalidate();
-                if (currentRow > 0) {
-                    currentRow--; // Prepare for the next row
-                }
-                //            LayerDrawable layerDrawable = (LayerDrawable) dice;
-//            GradientDrawable topLeft = (GradientDrawable) layerDrawable.findDrawableByLayerId(R.id.hautGauche);
-//            topLeft.setColor(Color.RED);
-//            imgDice.setImageDrawable(dice);
-            }
-        }else if (v == btnAbandonner) {
 
+                updateFeedbackDisplay(currentRow, feedback);
+                if (currentRow > 0) currentRow--;
+            }
+        } else if (v == btnAbandonner) {
+            // Handle abandon
         } else if (v == btnNouvellePartie) {
-
+            // Handle new game
         } else if (v == btnMenuPrincipal) {
-            {
-                finish();
-            }
-
+            finish();
         }
+    }
+
+    private void updateFeedbackDisplay(int row, Feedback feedback) {
+        ImageView feedbackImage = (ImageView) layoutFeedback.getChildAt(row);
+        LayerDrawable layers = (LayerDrawable) feedbackImage.getDrawable();
+        int correctPosition = feedback.getCouleurCorrecteEtPositionCorrecte();
+        int correctColor = feedback.getCouleurCorrecteEtPositionIncorrecte();
+
+        // Update for correct position and color
+        for (int i = 0; i < correctPosition; i++) {
+            GradientDrawable shape = (GradientDrawable) layers.findDrawableByLayerId(layerID[i]);
+            if (shape != null) shape.setColor(Color.GREEN);
+        }
+
+        // Update for correct color but wrong position
+        for (int i = correctPosition; i < correctPosition + correctColor; i++) {
+            if (i < layerID.length) {
+                GradientDrawable shape = (GradientDrawable) layers.findDrawableByLayerId(layerID[i]);
+                if (shape != null) shape.setColor(Color.RED);
+            }
+        }
+
+        feedbackImage.invalidate();
     }
 }

@@ -4,45 +4,44 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Feedback {
-
     private int couleurCorrecteEtPositionCorrecte;
     private int couleurCorrecteEtPositionIncorrecte;
-    private  Code code;
+    private Code code;
     private Code tentative;
 
-    List<Integer> listeResultat = new ArrayList<Integer>();
-
     public Feedback(Code code, Code tentative) {
-        this.couleurCorrecteEtPositionCorrecte = 0;
-        this.couleurCorrecteEtPositionIncorrecte = 0;
         this.code = code;
         this.tentative = tentative;
+        computeFeedback();
+    }
 
-        for (int i = 0; i < code.getCode().size(); i++) {
-            if (code.getCode().get(i).equals(tentative.getCode().get(i))) {
-//                this.listeResultat.add(2);
-                  couleurCorrecteEtPositionCorrecte++;
+    private void computeFeedback() {
+        List<String> secret = new ArrayList<>(code.getCode());
+        List<String> guess = new ArrayList<>(tentative.getCode());
+
+        // First pass to find correct position and color
+        for (int i = 0; i < secret.size(); i++) {
+            if (secret.get(i).equals(guess.get(i))) {
+                couleurCorrecteEtPositionCorrecte++;
+                secret.set(i, null); // Mark as matched
+                guess.set(i, null);
             }
-            else {
-                for (int j = 0; j < code.getCode().size(); j++) {
-                    if (code.getCode().get(i).equals(tentative.getCode().get(j))) {
-//                        this.listeResultat.add(1);
-                        couleurCorrecteEtPositionIncorrecte++;
-                    }
-                }
+        }
+
+        // Second pass to find correct color, wrong position
+        for (int i = 0; i < guess.size(); i++) {
+            if (guess.get(i) != null && secret.contains(guess.get(i))) {
+                couleurCorrecteEtPositionIncorrecte++;
+                secret.set(secret.indexOf(guess.get(i)), null); // Mark as matched
             }
         }
     }
 
-    public List<Integer> getListeResultat() {
-        return listeResultat;
-    }
-
     public int getCouleurCorrecteEtPositionCorrecte() {
-        return this.couleurCorrecteEtPositionCorrecte;
+        return couleurCorrecteEtPositionCorrecte;
     }
 
     public int getCouleurCorrecteEtPositionIncorrecte() {
-        return this.couleurCorrecteEtPositionIncorrecte;
+        return couleurCorrecteEtPositionIncorrecte;
     }
 }
