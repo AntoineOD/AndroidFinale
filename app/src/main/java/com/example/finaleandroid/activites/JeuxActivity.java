@@ -1,6 +1,8 @@
 package com.example.finaleandroid.activites;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
@@ -16,6 +18,7 @@ import com.example.finaleandroid.R;
 import com.example.finaleandroid.dao.DAO;
 import com.example.finaleandroid.modele.entite.Code;
 import com.example.finaleandroid.modele.entite.Couleur;
+import com.example.finaleandroid.modele.entite.Feedback;
 import com.example.finaleandroid.modele.entite.Mastermind;
 import com.example.finaleandroid.modele.entite.Stat;
 import com.example.finaleandroid.presentateur.PrensentateurCode;
@@ -25,6 +28,7 @@ import com.example.finaleandroid.presentateur.PresentateurStat;
 import org.json.JSONException;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class JeuxActivity extends AppCompatActivity implements View.OnClickListener {
@@ -44,11 +48,17 @@ public class JeuxActivity extends AppCompatActivity implements View.OnClickListe
     private int nbCouleurs;
     private int nbTentatives;
     private Mastermind mastermind;
-
+    private int selectedColor = -1;
+    private int currentRow;
     Button btnValider;
     Button btnAbandonner;
     Button btnNouvellePartie;
     Button btnMenuPrincipal;
+    Feedback feedback;
+    Code tentative;
+    List<String> tentativeCouleurs;
+
+    int[][] buttonCouleurs;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +78,7 @@ public class JeuxActivity extends AppCompatActivity implements View.OnClickListe
         nbCouleurs = intention.getIntExtra("NB_COULEURS", 8);
         longueurCode = intention.getIntExtra("LONGUEUR_CODE", 4);
         nbTentatives = intention.getIntExtra("NB_TENTATIVES", 10);
+        currentRow = nbTentatives -1;
 
         Mastermind mastermind = new Mastermind(longueurCode, nbCouleurs, nbTentatives);
 
@@ -81,6 +92,7 @@ public class JeuxActivity extends AppCompatActivity implements View.OnClickListe
         statistique = prensentateurStat.obtenirStatistiqueCorrespondante(codeSecret.getId());
 
         presentateurCouleur = new PresentateurCouleur(this);
+        presentateurCouleur.ObtenirCouleurs();
         presentateurCouleur.getCouleurs();
         listCouleur = presentateurCouleur.getCouleursCorespondantes(nbCouleurs);
 
@@ -89,9 +101,11 @@ public class JeuxActivity extends AppCompatActivity implements View.OnClickListe
         row = nbTentatives;
         column = longueurCode;
 
+        tentativeCouleurs = new ArrayList<>();
+        buttonCouleurs = new int[nbTentatives][longueurCode];
+
         gridLayoutTentatives.setRowCount(row);
         gridLayoutTentatives.setColumnCount(column);
-//  panneau de tentatives
         for (int i = 0; i < row * column; i++) {
             Drawable drawable = getResources().getDrawable(R.drawable.ovale);
             Button btnTentatives = new Button(this);
@@ -101,6 +115,17 @@ public class JeuxActivity extends AppCompatActivity implements View.OnClickListe
             params.height = 100;
             params.setMargins(5, 10, 5, 10);
             btnTentatives.setLayoutParams(params);
+            final int rowNum = i / column;
+            final int colNum = i % column;
+            btnTentatives.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (selectedColor != -1 && rowNum == currentRow) {
+                        v.setBackgroundColor(selectedColor);
+                        buttonCouleurs[rowNum][colNum] = selectedColor; // Update the color in the array
+                    }
+                }
+            });
             gridLayoutTentatives.addView(btnTentatives);
         }
         //Palette de couleurs
@@ -115,26 +140,46 @@ public class JeuxActivity extends AppCompatActivity implements View.OnClickListe
         }
         for (int i = 0; i < nbCouleurs; i++) {
             Button btnPalette = new Button(this);
-            int couleur = Integer.parseInt(listCouleur.get(i));
-            btnPalette.setBackgroundColor(couleur);
-            //Couleur a modifier avec le JSON
+            String colorString = listCouleur.get(i);
+            if (!colorString.startsWith("#")) {
+                colorString = "#" + colorString;
+            }
+            try {
+                int couleur = Color.parseColor(colorString);
+                btnPalette.setBackgroundColor(couleur);
+            } catch (IllegalArgumentException e) {
+            }
             GridLayout.LayoutParams params = new GridLayout.LayoutParams();
             params.width = 100;
             params.height = 100;
             params.setMargins(5, 10, 5, 10);
             btnPalette.setLayoutParams(params);
+            btnPalette.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    selectedColor = ((ColorDrawable) v.getBackground()).getColor();
+                }
+            });
             gridLayoutPalette.addView(btnPalette);
         }
         // Feedback
         layoutFeedback = findViewById(R.id.layoutReponses);
+        if(column==2)
+        {
+            this.dice = getResources().getDrawable(R.drawable.dice2);
+        }
+        if(column==3)
+        {
+            this.dice = getResources().getDrawable(R.drawable.dice3);
+        }
         if (column == 4) {
             this.dice = getResources().getDrawable(R.drawable.dice4);
         }
         if (column == 5) {
-            //Shape 5
+            this.dice = getResources().getDrawable(R.drawable.dice5);
         }
         if (column == 6) {
-            //Shape 6
+            this.dice = getResources().getDrawable(R.drawable.dice6);
         }
         for (int i = 0; i < row; i++) {
             ImageView imgDice = new ImageView(this);
@@ -154,8 +199,21 @@ public class JeuxActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         if (v == btnValider) {
-
-        } else if (v == btnAbandonner) {
+            if (currentRow >= 0) {
+                tentativeCouleurs.clear();
+                for (int i = 0; i < longueurCode; i++) {
+                    int color = buttonCouleurs[currentRow][i];
+                    String hexColor = String.format("#%06X", (0xFFFFFF & color));
+                    tentativeCouleurs.add(hexColor);
+                }
+                tentative = new Code(codeSecret.getId(), tentativeCouleurs, codeSecret.getNbCouleurs());
+                feedback = new Feedback(codeSecret, tentative);
+                // Log or use tentativeCouleurs as needed
+                if (currentRow > 0) {
+                    currentRow--; // Prepare for the next row
+                }
+            }
+        }else if (v == btnAbandonner) {
 
         } else if (v == btnNouvellePartie) {
 
