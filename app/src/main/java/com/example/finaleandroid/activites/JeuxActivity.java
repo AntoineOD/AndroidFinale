@@ -240,36 +240,21 @@ public class JeuxActivity extends AppCompatActivity implements View.OnClickListe
                 mastermind.addFeedback(feedback);
                 // Log or use tentativeCouleurs as needed
                 ImageView currentDiceImg = (ImageView) layoutFeedback.getChildAt(currentRow);
-                Drawable currentDiceDraw = currentDiceImg.getDrawable();
+                Drawable currentDiceDraw = currentDiceImg.getDrawable().mutate();
                 if(feedback.getCouleurCorrecteEtPositionCorrecte() > 0){
+                    LayerDrawable lay = (LayerDrawable) currentDiceDraw;
                     for(int i = 0; i<feedback.getCouleurCorrecteEtPositionCorrecte(); i++){
-                        LayerDrawable lay = (LayerDrawable) currentDiceDraw;
                         GradientDrawable test = (GradientDrawable) lay.findDrawableByLayerId(layerID[i]);
                         test.setColor(Color.RED);
                     }
                 }
                 if(feedback.getCouleurCorrecteEtPositionIncorrecte() > 0){
-                    for(int i = feedback.getCouleurCorrecteEtPositionIncorrecte(); i>0; i--){
-                        LayerDrawable lay = (LayerDrawable) currentDiceDraw;
+                    LayerDrawable lay = (LayerDrawable) currentDiceDraw;
+                    for(int i = column - 1; i>column - feedback.getCouleurCorrecteEtPositionIncorrecte() - 1; i--){
                         GradientDrawable test = (GradientDrawable) lay.findDrawableByLayerId(layerID[i]);
                         test.setColor(Color.GREEN);
                     }
                 }
-
-//                if(2 > 0){
-//                    for(int i = 0; i<2; i++){
-//                        LayerDrawable lay = (LayerDrawable) currentDiceDraw;
-//                        GradientDrawable test = (GradientDrawable) lay.findDrawableByLayerId(layerID[i]);
-//                        test.setColor(Color.RED);
-//                    }
-//                }
-//                if(2 > 0){
-//                    for(int i = 3; i>2; i--){
-//                        LayerDrawable lay = (LayerDrawable) currentDiceDraw;
-//                        GradientDrawable test = (GradientDrawable) lay.findDrawableByLayerId(layerID[i]);
-//                        test.setColor(Color.GREEN);
-//                    }
-//                }
                 currentDiceImg.setImageDrawable(currentDiceDraw);
                 currentDiceImg.invalidate();
                 if (currentRow > 0) {

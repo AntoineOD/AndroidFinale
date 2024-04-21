@@ -20,12 +20,14 @@ public class Feedback {
 
         for (int i = 0; i < code.getCode().size(); i++) {
             if (code.getCode().get(i).equals(tentative.getCode().get(i))) {
-                this.listeResultat.add(2);
+//                this.listeResultat.add(2);
+                  couleurCorrecteEtPositionCorrecte++;
             }
             else {
                 for (int j = 0; j < code.getCode().size(); j++) {
                     if (code.getCode().get(i).equals(tentative.getCode().get(j))) {
-                        this.listeResultat.add(1);
+//                        this.listeResultat.add(1);
+                        couleurCorrecteEtPositionIncorrecte++;
                     }
                 }
             }

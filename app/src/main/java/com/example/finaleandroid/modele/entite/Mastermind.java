@@ -1,5 +1,6 @@
 package com.example.finaleandroid.modele.entite;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Mastermind {
@@ -28,6 +29,8 @@ public class Mastermind {
         this.partieGagnee = false;
         this.partiePerdue = false;
         this.partieEnCours = true;
+        listTentatives = new ArrayList<>();
+        listFeedbacks = new ArrayList<>();
       //  this.tentatives = new Code[nbTentatives];
         //this.feedbacks = new Feedback[nbTentatives];
     }
