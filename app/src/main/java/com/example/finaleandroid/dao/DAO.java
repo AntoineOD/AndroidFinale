@@ -19,7 +19,12 @@ public class DAO {
     public static Couleur getCouleurs() throws IOException, JSONException {
         return new HttpJsonService().getCouleurs();
     }
-
+public static void ajouterStat(Stat stat) throws IOException, JSONException {
+        new HttpJsonService().postStat(stat);
+    }
+    public static void modifierStat(Stat stat) throws IOException, JSONException {
+        new HttpJsonService().putStat(stat);
+    }
 
 
 }

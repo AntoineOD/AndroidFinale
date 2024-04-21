@@ -51,6 +51,30 @@ public class PresentateurStat {
             }
         }.start();
     }
+    public void modifierStatistique(Stat stat){
+        new Thread() {
+            @Override
+            public void run() {
+                try {
+                    DAO.modifierStat(stat);
+                } catch (IOException e) {
+                } catch (JSONException e) {
+                }
+            }
+        }.start();
+    }
+    public void ajouterStatistique(Stat stat){
+        new Thread() {
+            @Override
+            public void run() {
+                try {
+                    DAO.ajouterStat(stat);
+                } catch (IOException e) {
+                } catch (JSONException e) {
+                }
+            }
+        }.start();
+    }
 
     public Stat obtenirStatistiqueCorrespondante(String idCodeSecret) {
 
