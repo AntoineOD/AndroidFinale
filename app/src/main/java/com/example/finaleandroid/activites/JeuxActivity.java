@@ -55,6 +55,7 @@ public class JeuxActivity extends AppCompatActivity implements View.OnClickListe
     private int longueurCode;
     private int nbCouleurs;
     private int nbTentatives;
+    private String courriel;
     private Mastermind mastermind;
     private int selectedColor = -1;
     private int currentRow;
@@ -90,6 +91,7 @@ public class JeuxActivity extends AppCompatActivity implements View.OnClickListe
         nbCouleurs = intention.getIntExtra("NB_COULEURS", 8);
         longueurCode = intention.getIntExtra("LONGUEUR_CODE", 4);
         nbTentatives = intention.getIntExtra("NB_TENTATIVES", 10);
+        courriel = intention.getStringExtra("COURRIEL");
         currentRow = nbTentatives -1;
 
         prensentateurCode=new PrensentateurCode(this);
@@ -105,7 +107,7 @@ public class JeuxActivity extends AppCompatActivity implements View.OnClickListe
         presentateurCouleur.ObtenirCouleurs();
         presentateurCouleur.getCouleurs();
         listCouleur = presentateurCouleur.getCouleursCorespondantes(nbCouleurs);
-
+        
         androidx.gridlayout.widget.GridLayout gridLayoutTentatives = findViewById(R.id.gridLayoutTentatives);
 
         row = nbTentatives;
@@ -115,7 +117,7 @@ public class JeuxActivity extends AppCompatActivity implements View.OnClickListe
         buttonCouleurs = new int[nbTentatives][longueurCode];
         layerID = new int[5];
 
-        mastermind = new Mastermind(longueurCode, nbCouleurs, nbTentatives);
+        mastermind = new Mastermind(codeSecret,courriel);
 
         gridLayoutTentatives.setRowCount(row);
         gridLayoutTentatives.setColumnCount(column);

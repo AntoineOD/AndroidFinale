@@ -78,6 +78,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             intention.putExtra("LONGUEUR_CODE", longueurCode);
             intention.putExtra("NB_COULEURS", nbCouleurs);
             intention.putExtra("NB_TENTATIVES", nbTentatives);
+
+            String email = String.valueOf(inpEmail.getText());
+            intention.putExtra("COURRIEL", email);
             startActivity(intention);
         }
         else if(v == btnConfig){
@@ -88,12 +91,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         }
         else if(v == btnEmail){
-            String email = String.valueOf(inpEmail.getText());
+
             //VerifEmail(email); On check si le email est un email valide
             //if(verifEmail() == true)
             emailVerfi = true;
-            Intent intention = new Intent();
-            intention.putExtra("email", email);
+
             btnStart.setEnabled(true);
             //else
             //Message comme quoi mail est invalide
