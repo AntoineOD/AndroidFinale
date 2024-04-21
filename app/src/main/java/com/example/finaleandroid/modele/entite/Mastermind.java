@@ -67,6 +67,10 @@ public void setPartieGagnee(boolean partieGagnee) {
     public Code getCodeSecret() {
         return this.codeSecret;
     }
+    public String getCodeSecretConcat(){
+        String result = String.join("", this.codeSecret.getCode());
+        return result;
+    }
     public String getIdCodeSecret() {
         return this.codeSecret.getId();
     }

@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.example.finaleandroid.modele.entite.Mastermind;
 import com.example.finaleandroid.modele.entite.Partie;
 
 import java.util.ArrayList;
@@ -34,14 +35,14 @@ public class GestionnaireBD extends SQLiteOpenHelper{
         db.execSQL(requeteModification);
     }
 
-    public void ajouterPartie(Partie partie){
+    public void ajouterPartie(Mastermind partie){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(Contrat.Colonnes.COLONNE_ID_CODE_SECRET, partie.getIdCodeSecret());
         values.put(Contrat.Colonnes.COLONNE_COURRIEL, partie.getCourrielJoueur());
-        values.put(Contrat.Colonnes.COLONNE_CODE, partie.getCodeSecret());
+        values.put(Contrat.Colonnes.COLONNE_CODE, partie.getCodeSecretConcat());
         values.put(Contrat.Colonnes.COLONNE_NB_COULEURS, partie.getNbCouleurs());
-        values.put(Contrat.Colonnes.COLONNE_RESULTAT, partie.getResultat());
+        values.put(Contrat.Colonnes.COLONNE_RESULTAT, partie.getResultatPartie());
         values.put(Contrat.Colonnes.COLONNE_NB_TENTATIVES, partie.getNbTentatives());
         db.insertWithOnConflict(Contrat.TABLE_PARTIES, null, values, SQLiteDatabase.CONFLICT_REPLACE);
     }
