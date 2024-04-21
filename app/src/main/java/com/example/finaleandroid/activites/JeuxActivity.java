@@ -80,8 +80,6 @@ public class JeuxActivity extends AppCompatActivity implements View.OnClickListe
         nbTentatives = intention.getIntExtra("NB_TENTATIVES", 10);
         currentRow = nbTentatives -1;
 
-        Mastermind mastermind = new Mastermind(longueurCode, nbCouleurs, nbTentatives);
-
         prensentateurCode=new PrensentateurCode(this);
         listCodes = prensentateurCode.getCodes();
         codeSecret = prensentateurCode.obtenirCodeSecret(longueurCode, nbCouleurs);
@@ -103,6 +101,8 @@ public class JeuxActivity extends AppCompatActivity implements View.OnClickListe
 
         tentativeCouleurs = new ArrayList<>();
         buttonCouleurs = new int[nbTentatives][longueurCode];
+
+        mastermind = new Mastermind(longueurCode, nbCouleurs, nbTentatives);
 
         gridLayoutTentatives.setRowCount(row);
         gridLayoutTentatives.setColumnCount(column);
@@ -202,12 +202,14 @@ public class JeuxActivity extends AppCompatActivity implements View.OnClickListe
             if (currentRow >= 0) {
                 tentativeCouleurs.clear();
                 for (int i = 0; i < longueurCode; i++) {
-                    int color = buttonCouleurs[currentRow][i];
-                    String hexColor = String.format("#%06X", (0xFFFFFF & color));
-                    tentativeCouleurs.add(hexColor);
+                    int couleur = buttonCouleurs[currentRow][i];
+                    String hexCoulor = String.format("%08X", couleur).toLowerCase();
+                    tentativeCouleurs.add(hexCoulor);
                 }
                 tentative = new Code(codeSecret.getId(), tentativeCouleurs, codeSecret.getNbCouleurs());
                 feedback = new Feedback(codeSecret, tentative);
+                mastermind.addTentative(tentative);
+                mastermind.addFeedback(feedback);
                 // Log or use tentativeCouleurs as needed
                 if (currentRow > 0) {
                     currentRow--; // Prepare for the next row
