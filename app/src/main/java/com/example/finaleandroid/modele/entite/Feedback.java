@@ -5,16 +5,16 @@ import java.util.List;
 
 public class Feedback {
 
-//    private int couleurCorrecteEtPositionCorrecte;
-//    private int couleurCorrecteEtPositionIncorrecte;
+    private int couleurCorrecteEtPositionCorrecte;
+    private int couleurCorrecteEtPositionIncorrecte;
     private  Code code;
     private Code tentative;
 
     List<Integer> listeResultat = new ArrayList<Integer>();
 
     public Feedback(Code code, Code tentative) {
-//        this.couleurCorrecteEtPositionCorrecte = 0;
-//        this.couleurCorrecteEtPositionIncorrecte = 0;
+        this.couleurCorrecteEtPositionCorrecte = 0;
+        this.couleurCorrecteEtPositionIncorrecte = 0;
         this.code = code;
         this.tentative = tentative;
 
@@ -36,11 +36,11 @@ public class Feedback {
         return listeResultat;
     }
 
-//    public int getCouleurCorrecteEtPositionCorrecte() {
-//        return this.couleurCorrecteEtPositionCorrecte;
-//    }
+    public int getCouleurCorrecteEtPositionCorrecte() {
+        return this.couleurCorrecteEtPositionCorrecte;
+    }
 
-//    public int getCouleurCorrecteEtPositionIncorrecte() {
-//        return this.couleurCorrecteEtPositionIncorrecte;
-//    }
+    public int getCouleurCorrecteEtPositionIncorrecte() {
+        return this.couleurCorrecteEtPositionIncorrecte;
+    }
 }
