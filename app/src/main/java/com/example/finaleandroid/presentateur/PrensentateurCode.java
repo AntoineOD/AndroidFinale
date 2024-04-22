@@ -30,14 +30,13 @@ public class PrensentateurCode {
     }
 
     public List<Code> getCodes() {
-       return modele.getCodes();
+        return modele.getCodes();
     }
 
 
     public Code getCode(String id) {
         return modele.getCode(id);
     }
-
 
 
     public void ObtenirCode() {
@@ -55,10 +54,11 @@ public class PrensentateurCode {
             }
         }).start();
     }
+
     public Code obtenirCodeSecret(int longueurCode, int nbCouleurs) {
         List<Code> codesCorespondant = new ArrayList();
-        for( Code code:modele.getCodes()){
-            if(code.getCode().size() == longueurCode && code.getNbCouleurs() == nbCouleurs){
+        for (Code code : modele.getCodes()) {
+            if (code.getCode().size() == longueurCode && code.getNbCouleurs() == nbCouleurs) {
                 codesCorespondant.add(code);
             }
         }

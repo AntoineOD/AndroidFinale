@@ -14,7 +14,6 @@ import androidx.annotation.Nullable;
 
 import com.example.finaleandroid.R;
 import com.example.finaleandroid.modele.entite.Mastermind;
-import com.example.finaleandroid.modele.entite.Partie;
 
 import java.util.List;
 
@@ -23,23 +22,25 @@ public class MasterMindAdapter extends ArrayAdapter<Mastermind> {
     private int viewResourceId;
     private Resources resources;
     private List<Mastermind> listMasterMind;
-     TextView tvNCourrielJoeur;
-     TextView tvCodeSecret;
-     TextView tvNbCouleurs;
-     TextView tvResultatPartie;
-     TextView tvNbTentatives;
+    TextView tvNCourrielJoeur;
+    TextView tvCodeSecret;
+    TextView tvNbCouleurs;
+    TextView tvResultatPartie;
+    TextView tvNbTentatives;
 
-    public MasterMindAdapter(@NonNull Context context, int resource,  List<Mastermind> listMasterMind) {
+    public MasterMindAdapter(@NonNull Context context, int resource, List<Mastermind> listMasterMind) {
         super(context, resource);
         this.contexte = context;
         this.viewResourceId = resource;
         this.resources = contexte.getResources();
         this.listMasterMind = listMasterMind;
     }
+
     @Override
     public int getCount() {
         return this.listMasterMind.size();
     }
+
     @SuppressLint("NewApi")
     @NonNull
     @Override
@@ -56,14 +57,14 @@ public class MasterMindAdapter extends ArrayAdapter<Mastermind> {
             final TextView tvCodeSecret = (TextView) view.findViewById(R.id.hisTvCodeSecret);
             final TextView tvNbCouleurs = (TextView) view.findViewById(R.id.hisTvNbCouleurs);
             final TextView tvResultatPartie = (TextView) view.findViewById(R.id.hisTvResultat);
-            final TextView tvNbTentatives= (TextView) view.findViewById(R.id.hisTvNbTentatives);
+            final TextView tvNbTentatives = (TextView) view.findViewById(R.id.hisTvNbTentatives);
 
 
-            tvNCourrielJoeur.setText("Courriel : "+mastermind.getCourrielJoueur());
-            tvCodeSecret.setText("Code Secret: "+mastermind.getCodeSecretConcat());
-            tvNbCouleurs.setText("Nb couleurs: "+mastermind.getNbCouleurs());
-            tvResultatPartie.setText("Resultat partie: " +mastermind.getResultatPartie());
-            tvNbTentatives.setText("N tentatives: "+mastermind.getNbTentatives());
+            tvNCourrielJoeur.setText("Courriel : " + mastermind.getCourrielJoueur());
+            tvCodeSecret.setText("Code Secret: " + mastermind.getCodeSecretConcat());
+            tvNbCouleurs.setText("Nb couleurs: " + mastermind.getNbCouleurs());
+            tvResultatPartie.setText("Resultat partie: " + mastermind.getResultatPartie());
+            tvNbTentatives.setText("N tentatives: " + mastermind.getNbTentatives());
 
         }
         return view;

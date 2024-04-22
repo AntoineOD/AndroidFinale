@@ -28,11 +28,12 @@ public class PresentateurStat {
     public Stat getStat(String id) {
         return modele.getStat(id);
     }
+
     public List<Stat> getStats() {
         return modele.getStats();
     }
 
-    public void ObtenirStatistiques(){
+    public void ObtenirStatistiques() {
         new Thread() {
             @Override
             public void run() {
@@ -51,7 +52,8 @@ public class PresentateurStat {
             }
         }.start();
     }
-    public void modifierStatistique(Stat stat){
+
+    public void modifierStatistique(Stat stat) {
         new Thread() {
             @Override
             public void run() {
@@ -63,7 +65,8 @@ public class PresentateurStat {
             }
         }.start();
     }
-    public void ajouterStatistique(Stat stat){
+
+    public void ajouterStatistique(Stat stat) {
         new Thread() {
             @Override
             public void run() {
@@ -78,15 +81,15 @@ public class PresentateurStat {
 
     public Stat obtenirStatistiqueCorrespondante(String idCodeSecret) {
 
-            Stat statCorespondante = null;
-            for(Stat stat: modele.getStats()){
-                if(stat.getIdCode().equals(idCodeSecret) ){
-                    statCorespondante= stat;
-                }
+        Stat statCorespondante = null;
+        for (Stat stat : modele.getStats()) {
+            if (stat.getIdCode().equals(idCodeSecret)) {
+                statCorespondante = stat;
             }
-            return  statCorespondante;
         }
+        return statCorespondante;
     }
+}
 
 
 

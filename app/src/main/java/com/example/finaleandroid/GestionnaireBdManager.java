@@ -8,12 +8,12 @@ import com.example.finaleandroid.modele.Modele;
 public class GestionnaireBdManager {
 
     GestionnaireBD gestionnaireDataBase;
-    public GestionnaireBdManager(Activity activite)
-    {
+
+    public GestionnaireBdManager(Activity activite) {
         gestionnaireDataBase = new GestionnaireBD(activite);
     }
-    public GestionnaireBD getDBUtil()
-    {
+
+    public GestionnaireBD getDBUtil() {
         return gestionnaireDataBase;
     }
 }

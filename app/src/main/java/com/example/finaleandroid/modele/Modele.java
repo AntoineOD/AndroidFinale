@@ -9,47 +9,53 @@ import java.util.List;
 
 public class Modele {
 
-   private List<Code> codeList = new ArrayList<>() ;
-    private List<Stat> statList = new ArrayList<>() ;
-    private List<Couleur> couleurList = new ArrayList<>() ;
+    private List<Code> codeList = new ArrayList<>();
+    private List<Stat> statList = new ArrayList<>();
+    private List<Couleur> couleurList = new ArrayList<>();
     private Couleur couleur = new Couleur();
 
-  public List<Code> getCodes() {
-      return codeList;
-   }
-   public List<Stat> getStats() {
-      return statList;
-   }
-   public void setCodes(List<Code> codeList) {
-      this.codeList = codeList;
-   }
-   public Code getCode(String id) {
-      for (Code code:this.codeList)
-         if (code.getId().equals(id))
-            return code;
-      return null;
-   }
-   public void setStats(List<Stat> statList) {
-      this.statList = statList;
-   }
-   public Stat getStat(String id) {
-      for (Stat stat:this.statList)
-         if (stat.getId().equals(id))
-            return stat;
-      return null;
-   }
+    public List<Code> getCodes() {
+        return codeList;
+    }
+
+    public List<Stat> getStats() {
+        return statList;
+    }
+
+    public void setCodes(List<Code> codeList) {
+        this.codeList = codeList;
+    }
+
+    public Code getCode(String id) {
+        for (Code code : this.codeList)
+            if (code.getId().equals(id))
+                return code;
+        return null;
+    }
+
+    public void setStats(List<Stat> statList) {
+        this.statList = statList;
+    }
+
+    public Stat getStat(String id) {
+        for (Stat stat : this.statList)
+            if (stat.getId().equals(id))
+                return stat;
+        return null;
+    }
 
     public List<String> getCouleurs() {
-      return couleur.getCouleur();
+        return couleur.getCouleur();
     }
 
     public Couleur getCouleur(String id) {
-        for (Couleur couleur:this.couleurList)
+        for (Couleur couleur : this.couleurList)
             if (couleur.getCouleur().equals(id))
                 return couleur;
         return null;
     }
+
     public void setCouleurs(Couleur couleurList) {
-      couleur=couleurList;
+        couleur = couleurList;
     }
 }

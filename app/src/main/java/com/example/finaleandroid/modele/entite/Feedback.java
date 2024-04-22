@@ -32,7 +32,7 @@ public class Feedback {
         for (int i = 0; i < guess.size(); i++) {
             if (guess.get(i) != null && secret.contains(guess.get(i))) {
                 couleurCorrecteEtPositionIncorrecte++;
-                secret.set(secret.indexOf(guess.get(i)), null); // Mark as matched
+                secret.remove(guess.get(i)); // Remove matched element from secret
             }
         }
     }

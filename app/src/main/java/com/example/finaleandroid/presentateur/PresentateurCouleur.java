@@ -37,7 +37,7 @@ public class PresentateurCouleur {
     }
 
 
-    public void ObtenirCouleurs(){
+    public void ObtenirCouleurs() {
         new Thread() {
             @Override
             public void run() {

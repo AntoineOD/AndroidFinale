@@ -18,6 +18,7 @@ public class HistoriqueActivity extends AppCompatActivity implements View.OnClic
     private Button btnRetour;
     private ListView lvHistorique;
     private GestionnaireBdManager gestionnaireBdManager;
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_historique);
@@ -28,14 +29,14 @@ public class HistoriqueActivity extends AppCompatActivity implements View.OnClic
         lvHistorique = findViewById(R.id.historiqueLv);
         gestionnaireBdManager = new GestionnaireBdManager(this);
 
-        MasterMindAdapter adapter = new MasterMindAdapter(this,R.layout.layout_element_historique,gestionnaireBdManager.getDBUtil().retournerListsPartie());
+        MasterMindAdapter adapter = new MasterMindAdapter(this, R.layout.layout_element_historique, gestionnaireBdManager.getDBUtil().retournerListsPartie());
         lvHistorique.setAdapter(adapter);
 
     }
 
     @Override
     public void onClick(View v) {
-        if(v == btnRetour)  {
+        if (v == btnRetour) {
             finish();
         }
     }

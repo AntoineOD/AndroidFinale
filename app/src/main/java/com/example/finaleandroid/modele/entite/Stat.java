@@ -5,16 +5,20 @@ public class Stat {
     private String idCode;
     private String record;
     private String courriel;
+    private static int increm = 1;
 
-    public Stat() {
-        // Default constructor
-    }
+    public Stat() {    }
 
     public Stat(String idCode, String record, String courriel) {
-      //  this.id = id;
+        increm++;
         this.idCode = idCode;
         this.record = record;
         this.courriel = courriel;
+        incremId();
+    }
+
+    private void incremId() {
+        this.id = Integer.toString(increm);
     }
 
     public String getId() {

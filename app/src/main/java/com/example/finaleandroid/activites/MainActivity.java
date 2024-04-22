@@ -37,9 +37,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button btnEmail;
     Boolean emailVerfi;
     final int REQUEST_CODE = 1;
-    private int longueurCode =4;
-    private int nbCouleurs=8;
-    private  int nbTentatives=10;
+    private int longueurCode = 4;
+    private int nbCouleurs = 8;
+    private int nbTentatives = 10;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         txtTitre = findViewById(R.id.titre);
-        txtEmail= findViewById(R.id.messageCouriel);
+        txtEmail = findViewById(R.id.messageCouriel);
         inpEmail = findViewById(R.id.inputCouriel);
         btnEmail = findViewById(R.id.btnEmail);
         btnStart = findViewById(R.id.btnPlay);
@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        if(v == btnStart){
+        if (v == btnStart) {
             Intent intention = new Intent(this, JeuxActivity.class);
             intention.putExtra("LONGUEUR_CODE", longueurCode);
             intention.putExtra("NB_COULEURS", nbCouleurs);
@@ -83,17 +83,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             String email = String.valueOf(inpEmail.getText());
             intention.putExtra("COURRIEL", email);
             startActivity(intention);
-        }
-        else if(v == btnConfig){
+        } else if (v == btnConfig) {
             Intent intention = new Intent(this, ConfigActivity.class);
-            startActivityForResult(intention,REQUEST_CODE);
-        }
-        else if(v == btnHistorique){
+            startActivityForResult(intention, REQUEST_CODE);
+        } else if (v == btnHistorique) {
             Intent intention = new Intent(this, HistoriqueActivity.class);
             startActivity(intention);
 
-        }
-        else if(v == btnEmail){
+        } else if (v == btnEmail) {
 
             //VerifEmail(email); On check si le email est un email valide
             //if(verifEmail() == true)
@@ -104,14 +101,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             //Message comme quoi mail est invalide
         }
     }
+
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
             case REQUEST_CODE:
                 if (resultCode == RESULT_OK) {
-                     longueurCode = data.getIntExtra("LONGUEUR_CODE",2);
-                     nbCouleurs = data.getIntExtra("NB_COULEURS",6);
-                     nbTentatives = data.getIntExtra("NB_TENTATIVES",2);
+                    longueurCode = data.getIntExtra("LONGUEUR_CODE", 2);
+                    nbCouleurs = data.getIntExtra("NB_COULEURS", 6);
+                    nbTentatives = data.getIntExtra("NB_TENTATIVES", 2);
                 }
                 break;
         }

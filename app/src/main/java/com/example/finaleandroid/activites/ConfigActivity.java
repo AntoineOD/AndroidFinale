@@ -28,10 +28,11 @@ public class ConfigActivity extends AppCompatActivity implements View.OnClickLis
     private int nbCouleurs;
 
     int positionSpin1 = 2;
-    int positionSpin2 =6;
-    int positionSpin3=2;
+    int positionSpin2 = 6;
+    int positionSpin3 = 2;
 
     private int nbTentatives;
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.config_activity);
@@ -45,7 +46,6 @@ public class ConfigActivity extends AppCompatActivity implements View.OnClickLis
         spin3 = findViewById(R.id.spin3);
         btnSave = findViewById(R.id.btnSave);
         btnSave.setOnClickListener(this);
-
 
 
         ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this, R.array.spinner_longueur_code, android.R.layout.simple_spinner_item);
@@ -69,6 +69,7 @@ public class ConfigActivity extends AppCompatActivity implements View.OnClickLis
                 String selectedItem = (String) parent.getItemAtPosition(position);
                 longeurCode = Integer.parseInt(selectedItem);
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
@@ -105,12 +106,12 @@ public class ConfigActivity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onClick(View v) {
-        if(v == btnSave){
+        if (v == btnSave) {
             Intent data = new Intent();
-            data.putExtra("LONGUEUR_CODE",longeurCode);
+            data.putExtra("LONGUEUR_CODE", longeurCode);
             data.putExtra("NB_COULEURS", nbCouleurs);
             data.putExtra("NB_TENTATIVES", nbTentatives);
-            setResult(RESULT_OK,data);
+            setResult(RESULT_OK, data);
             finish();
         }
     }

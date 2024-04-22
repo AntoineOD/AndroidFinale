@@ -11,6 +11,7 @@ import java.util.List;
 
 public class CodeThread {
     Modele modele;
+
     public void runThread() throws IOException, JSONException {
         modele = ModeleManager.getInstance();
         List<Code> liste = null;

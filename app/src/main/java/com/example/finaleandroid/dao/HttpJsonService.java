@@ -1,4 +1,5 @@
 package com.example.finaleandroid.dao;
+
 import android.util.Log;
 
 
@@ -57,6 +58,7 @@ public class HttpJsonService {
             return null;
         }
     }
+
     public void putStat(Stat stat) throws IOException, JSONException {
         OkHttpClient okHttpClient = new OkHttpClient();
         MediaType JSON = MediaType.parse("application/json; chartset=utf-8");
@@ -65,25 +67,15 @@ public class HttpJsonService {
 
         obj.put("id", stat.getId());
         obj.put("idCode", stat.getIdCode());
-        obj.put("record",stat.getRecord());
-        obj.put("courriel", stat.getCourriel() );
+        obj.put("record", stat.getRecord());
+        obj.put("courriel", stat.getCourriel());
 
         RequestBody corpsRequete = RequestBody.create(String.valueOf(obj), JSON);
-        String url = URL_POINT_ENTREE + "/stats/"+stat.getId();
+        String url = URL_POINT_ENTREE + "/stats/" + stat.getId();
         Request request = new Request.Builder().url(url)
                 .post(corpsRequete)
                 .build();
         Response response = okHttpClient.newCall(request).execute();
-
-//        Log.e("HttpJsonService:enregistrerCompte()", "Code reponse : "+response.code());
-//        if (response.code() == 200) {
-//            Log.d("HttpJsonService:enregistrerCompte()", "Compte modifié avec succès");
-//
-//        }
-//        else {
-//            Log.d("HttpJsonService:enregistrerCompte()", "Compte non modifié");
-//
-//        }
 
     }
 
@@ -95,8 +87,8 @@ public class HttpJsonService {
 
         obj.put("id", stat.getId());
         obj.put("idCode", stat.getIdCode());
-        obj.put("record",stat.getRecord());
-        obj.put("courriel", stat.getCourriel() );
+        obj.put("record", stat.getRecord());
+        obj.put("courriel", stat.getCourriel());
 
         RequestBody corpsRequete = RequestBody.create(String.valueOf(obj), JSON);
         String url = URL_POINT_ENTREE + "/stats";
@@ -128,8 +120,7 @@ public class HttpJsonService {
         String responseBody = response.body().string();
         if (isValidJSON(responseBody)) {
             ObjectMapper objectMapper = new ObjectMapper();
-            Couleur listeCouleur =  objectMapper.readValue(responseBody, Couleur.class);
-            System.out.println("test");
+            Couleur listeCouleur = objectMapper.readValue(responseBody, Couleur.class);
             return listeCouleur;
         } else {
             Log.e("HttpJsonService:getStats()", "Invalid JSON response");

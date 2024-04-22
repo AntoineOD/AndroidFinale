@@ -60,7 +60,7 @@ public class JeuxActivity extends AppCompatActivity implements View.OnClickListe
     private int longueurCode;
     private int nbCouleurs;
     private int nbTentatives;
-    private  int getNbTentativesUtilisateur;
+    private int getNbTentativesUtilisateur;
     private String courriel;
     private Mastermind mastermind;
     private int selectedColor = 0;
@@ -83,6 +83,7 @@ public class JeuxActivity extends AppCompatActivity implements View.OnClickListe
     public GestionnaireBD getGestionnaireBD() {
         return gestionnaireBD;
     }
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_jeux);
@@ -252,19 +253,18 @@ public class JeuxActivity extends AppCompatActivity implements View.OnClickListe
                 updateFeedbackDisplay(currentRow, feedback);
                 if (currentRow > 0) {
                     currentRow--;
-                }
-                else{
+                } else {
                     mastermind.setResultat("échouée");
                     mastermind.setNbTentatives(row);
                     gestionnaireBD.ajouterPartie(mastermind);
                     finish();
                 }
-                if(feedback.getCouleurCorrecteEtPositionCorrecte() == column){
-                    getNbTentativesUtilisateur = row - currentRow;
-                    if(statistique== null){
-                        prensentateurStat.ajouterStatistique(new Stat(codeSecret.getId(),courriel, String.valueOf(getNbTentativesUtilisateur)));
+                if (feedback.getCouleurCorrecteEtPositionCorrecte() == column) {
+                    getNbTentativesUtilisateur = row - currentRow - 1;
+                    if (statistique == null) {
+                        prensentateurStat.ajouterStatistique(new Stat(codeSecret.getId(), String.valueOf(getNbTentativesUtilisateur), courriel));
 
-                    }else if(Integer.parseInt(statistique.getRecord())  < getNbTentativesUtilisateur){
+                    } else if (Integer.parseInt(statistique.getRecord()) < getNbTentativesUtilisateur) {
                         statistique.setRecord(String.valueOf(getNbTentativesUtilisateur));
                         prensentateurStat.modifierStatistique(statistique);
                     }

@@ -9,11 +9,11 @@ public class Couleur {
     @JsonProperty("liste")
     private List<String> liste;
 
-    public Couleur(){
+    public Couleur() {
 
     }
 
-    public Couleur(List<String> liste){
+    public Couleur(List<String> liste) {
         this.liste = liste;
     }
 
